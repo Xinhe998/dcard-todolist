@@ -10,10 +10,10 @@ export default (element) => {
         }
     };
     useEffect(() => {
-        element.current.addEventListener('mousemove', autosize);
+        element.current.addEventListener('load', autosize);
         element.current.addEventListener('keydown', autosize);
         return () => {
-            element.current.removeEventListener('mousemove', autosize);
+            element.current.removeEventListener('load', autosize);
             element.current.removeEventListener('keydown', autosize);
         };
     }, []);

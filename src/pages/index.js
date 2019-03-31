@@ -5,8 +5,12 @@ import * as action from '../actions/todoActions';
 import './index.scss';
 import useAutoSize from '../hooks/useAutoSize';
 
-import Header from '../components/Header'
+import Header from '../components/Header';
 import TodoItem from '../components/TodoItem';
+import PaneButton from '../components/PaneButton';
+
+import calendarImg from '../assets/calendar.png';
+import levelImg from '../assets/level.png';
 
 const Home = () => {
     const globalStore = useContext(Store);
@@ -39,13 +43,14 @@ const Home = () => {
             <Header title="TodoList" />
             <div className="AppContent">
                 <h1 className="TasksToolBar__title">All Tasks</h1>
-                <div className="CardScrollView CardScrollView--animatedIn">
+                <div className="CardScrollView CardScrollView--animatedIn1">
                     <div className="CardScrollView__list">
                         {state.todos.map(item => (
                             <TodoItem
                                 key={item.id}
                                 text={item.text}
                                 isComplete={item.isComplete}
+                                showGlow={item.showingDetail}
                                 onClickCheckbox={() => {
                                     dispatch(action.updateTodoIsComplete({ id: item.id, text: item.text, isComplete: !item.isComplete }));
                                 }}
@@ -75,20 +80,29 @@ const Home = () => {
                         </div>
                     </form>
                 </div>
-                <div className="CardScrollView CardScrollView--animatedIn">
+                <div className="CardScrollView CardScrollView--animatedIn2">
                     <div className="CardScrollView__detail">
                         {state.todos.map((item) => {
                             if (item.showingDetail) {
                                 return (
-                                    <textarea
-                                        ref={textareaRef}
-                                        value={item.text}
-                                        disabled={!item.isComplete}
-                                        onChange={e => dispatch(action.updateTodoName({
-                                            id: item.id, text: e.target.value, isComplete: item.isComplete, showingDetail: true,
-                                        }))}
-                                        onKeyPress={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
-                                    />
+                                    <>
+                                        <textarea
+                                            ref={textareaRef}
+                                            value={item.text}
+                                            disabled={item.isComplete}
+                                            onChange={e => dispatch(action.updateTodoName({
+                                                id: item.id, text: (e.target.value ? e.target.value : item.text), isComplete: item.isComplete, showingDetail: true,
+                                            }))}
+                                            onKeyPress={(e) => { 
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault();
+                                                    textareaRef.current.blur();
+                                                }
+                                            }}
+                                        />
+                                        <PaneButton icon={calendarImg} text="Expiration date" />
+                                        <PaneButton icon={levelImg} text="Importance" />
+                                    </>
                                 );
                             }
                         })}
