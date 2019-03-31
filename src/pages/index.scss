@@ -1,0 +1,267 @@
+:root { 
+    --dcard-blue: #006aa6;
+    --header-height: 60px;
+    --card-bg-color: #fafafa;
+    --card-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
+    --card-border-radius: 10px;
+}
+body {
+    background: #00324E;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+    caret-color: var(--dcard-blue);
+}
+.AppHeader {
+    background: var(--dcard-blue);
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    .AppHeader__logo-wrap {
+        color: #ffffff;
+        font-size: 25px;
+        line-height: 2.5;
+        overflow: hidden;
+        display: block;
+        height: var(--header-height);
+        margin-left: 30px;
+        letter-spacing: 1.5px;
+        font-weight: 500;
+    }
+}
+.AppContent {
+    height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
+    padding-left: 60px;
+    padding-top: 30px;
+}
+.TasksToolBar__title {
+    color: #ffffff;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    height: 40px;
+    margin: 10px 0;
+}
+.CardScrollView {
+    position: relative;
+    height: calc(100vh - var(--header-height) - 120px);
+    width: 400px;
+    background: var(--card-bg-color);
+    box-shadow: var(--card-box-shadow);
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 50px;
+}
+.CardScrollView__list {
+    height: calc(100% - 60px);
+    padding: 0 20px;
+    padding-bottom: 20px;
+    overflow: scroll;
+    overflow-scrolling: touch;
+    margin: 1px;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+    &::-webkit-scrollbar-thumb {
+        width: 10px;
+        border-radius: 4px;
+        background-color: rgba(0,0,0,.3);
+        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+    &::-webkit-scrollbar-track {
+        margin: 10px;
+    }
+
+    .CardScrollView__item {
+        max-width: 100%;
+        border: 1px solid #d8d8d8;
+        padding: 15px;
+        border-radius: var(--card-border-radius);
+        margin-top: 15px;
+        transition: all .5s;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all .5s;
+        &:hover {
+            border-color: var(--dcard-blue);
+        }
+        label {
+            word-break: break-all;
+            padding: 1px 1px 1px 30px;
+            display: block;
+            line-height: 1;
+            transition: all 0.5s;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        input[type="checkbox"] {
+            display: inline-block;
+            text-align: center;
+            width: 30px;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            border: none;
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 0;
+            outline: 0;
+            cursor: pointer;
+            &:before {
+                width: 20px;
+                height: 20px;
+                content: '';
+                position: absolute;
+                margin-top: 15px;
+                left: 0;
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNjAgNjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYwIDYwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGNsYXNzPSIiPjxnPjxwYXRoIGQ9Ik0zMCwwQzEzLjQ1OCwwLDAsMTMuNDU4LDAsMzBzMTMuNDU4LDMwLDMwLDMwczMwLTEzLjQ1OCwzMC0zMFM0Ni41NDIsMCwzMCwweiBNMzAsNThDMTQuNTYxLDU4LDIsNDUuNDM5LDIsMzAgIFMxNC41NjEsMiwzMCwyczI4LDEyLjU2MSwyOCwyOFM0NS40MzksNTgsMzAsNTh6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNDQkNCQ0IiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+PC9nPiA8L3N2Zz4=');
+                background-repeat: no-repeat;
+                background-position: center left;
+                background-size: 20px 20px;
+            }
+            &:checked:before {
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwIDUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxjaXJjbGUgc3R5bGU9ImZpbGw6I0NCQ0JDQiIgY3g9IjI1IiBjeT0iMjUiIHI9IjI1IiBkYXRhLW9yaWdpbmFsPSIjMjVBRTg4IiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjI0NCQ0JDIj48L2NpcmNsZT48cG9seWxpbmUgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6I0ZGRkZGRjtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBwb2ludHM9IiAgMzgsMTUgMjIsMzMgMTIsMjUgIj48L3BvbHlsaW5lPjwvZz4gPC9zdmc+');
+                background-size: 20px 20px;
+            }
+            &:checked + label {
+                color: #d8d8d8;
+                width: 80%;
+            }
+            &:checked ~ .stroke {
+                width: 0%;
+                position: absolute;
+                left: 40px;
+                top: 25px;
+                border-top: 1px solid #d8d8d8;
+                animation: stroke_stretch .5s .3s;
+                animation-fill-mode: forwards;
+            }
+            &:checked ~ .delBtn {
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                top: 15px;
+                right: -20px;
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwIDUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGNsYXNzPSIiPjxnPjxjaXJjbGUgc3R5bGU9ImZpbGw6I0NCQ0JDQiIgY3g9IjI1IiBjeT0iMjUiIHI9IjI1IiBkYXRhLW9yaWdpbmFsPSIjRDc1QTRBIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjRjBGMEYwIj48L2NpcmNsZT48cG9seWxpbmUgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6I0ZGRkZGRjtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiIHBvaW50cz0iMTYsMzQgMjUsMjUgMzQsMTYgICAiPjwvcG9seWxpbmU+PHBvbHlsaW5lIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLXdpZHRoOjI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7IiBwb2ludHM9IjE2LDE2IDI1LDI1IDM0LDM0ICAgIj48L3BvbHlsaW5lPjwvZz4gPC9zdmc+');
+                background-repeat: no-repeat;
+                background-position: center left;
+                background-size: 20px 20px;
+                animation: delBtn_slideIn .5s .5s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+.CardScrollView__detail {
+    padding: 0 20px;
+    textarea {
+        outline: 0;
+        background-color: transparent;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        display: block;
+        direction: ltr;
+        border: none;
+        border-radius: var(--card-border-radius);
+        transition: all .5s;
+        padding: 20px 20px 0;
+        font-size: 20px;
+        letter-spacing: 1.5px;
+        font-weight: 500;
+        width: -webkit-fill-available;
+        resize: none;
+        &:hover, &:focus {
+            background: #ebebeb;
+        }
+    }
+}
+.TaskAddBar {
+    height: 50px;
+    max-height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 -4px 10px 0  rgba(0, 0, 0, .1);
+    padding: 5px;
+    vertical-align: middle;
+    background: var(--card-bg-color);
+    .TaskAddBar__input {
+        outline: 0;
+        height: calc(50px - 15px);
+        background: none;
+        width: 80%;
+        border: 1px solid #d8d8d8;
+        border-radius: 50px;
+        padding: 5px 5px 5px 10px;
+        transition: all .5s;
+        font-size: 15px;
+        vertical-align: middle;
+        &:hover, &:focus {
+            border-color: var(--dcard-blue);
+        }
+        &:focus {
+            & + .TaskAddBar__submitBtn {
+                &:not(:disabled) {
+                    cursor: pointer;
+                    background: var(--dcard-blue);
+                    color: #ffffff;
+                    border: none;
+                    &:hover {
+                        background: #008ddf;
+                    }
+                }
+            }
+        }
+        &::placeholder {
+            color: #d8d8d8;
+        }
+    }
+    .TaskAddBar__submitBtn {
+        border-radius: 50%;
+        outline: 0;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        font-size: 20px;
+        line-height: 0;
+        font-weight: 200;
+        vertical-align: middle;
+        margin-left: 5px;
+        transition: all .5s;
+        color: #d8d8d8;
+        &:not(:disabled) {
+            cursor: pointer;
+            &:hover {
+                background: #008ddf;
+                border: none;
+                color: #ffffff;
+            }
+        }
+    }
+}
+@keyframes stroke_stretch {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 70%;
+    }
+}
+@keyframes delBtn_slideIn {
+    from {
+        right: -10px;
+    }
+    to {
+        right: 15px;
+    }
+}
