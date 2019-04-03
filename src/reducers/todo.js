@@ -32,6 +32,16 @@ const reducer = (state, action) => {
             }),
         };
 
+    case 'UPDATE_TODO_NOTE':
+        return {
+            todos: state.todos.map((item) => {
+                if (action.payload.id === item.id) {
+                    return Object.assign({}, item, { note: action.payload.note });
+                }
+                return item;
+            }),
+        };
+
     case 'DELETE_TODO':
         return {
             ...state,

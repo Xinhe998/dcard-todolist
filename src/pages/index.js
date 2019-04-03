@@ -16,7 +16,6 @@ const Home = () => {
     const globalStore = useContext(Store);
     const [state, dispatch] = useReducer(reducer, globalStore);
     const [newTask, setNewTask] = useState('');
-    const [detailTaskName, setDetailTaskName] = useState('');
     const uuid = () => {
         let d = Date.now();
         if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
@@ -31,13 +30,15 @@ const Home = () => {
     const addTask = () => {
         if (newTask.trim() !== '') {
             dispatch(action.addTodoItem({
-                id: uuid(), text: newTask, isComplete: false, showingDetail: true,
+                id: uuid(), text: newTask, isComplete: false, showingDetail: true, note: ''
             }));
             setNewTask('');
         }
     };
     const textareaRef = useRef();
+    const taskNoteRef = useRef();
     useAutoSize(textareaRef);
+    useAutoSize(taskNoteRef);
     return (
         <Store.Provider value={{ state, dispatch }}>
             <Header title="TodoList" />
@@ -52,7 +53,7 @@ const Home = () => {
                                 isComplete={item.isComplete}
                                 showGlow={item.showingDetail}
                                 onClickCheckbox={() => {
-                                    dispatch(action.updateTodoIsComplete({ id: item.id, text: item.text, isComplete: !item.isComplete }));
+                                    dispatch(action.updateTodoIsComplete({ id: item.id, isComplete: !item.isComplete }));
                                 }}
                                 del={() => {
                                     dispatch(action.deleteTodoItem(item));
@@ -91,9 +92,9 @@ const Home = () => {
                                             value={item.text}
                                             disabled={item.isComplete}
                                             onChange={e => dispatch(action.updateTodoName({
-                                                id: item.id, text: (e.target.value ? e.target.value : item.text), isComplete: item.isComplete, showingDetail: true,
+                                                id: item.id, text: (e.target.value ? e.target.value : item.text),
                                             }))}
-                                            onKeyPress={(e) => { 
+                                            onKeyPress={(e) => {
                                                 if (e.key === 'Enter') {
                                                     e.preventDefault();
                                                     textareaRef.current.blur();
@@ -102,6 +103,17 @@ const Home = () => {
                                         />
                                         <PaneButton icon={calendarImg} text="Expiration date" />
                                         <PaneButton icon={levelImg} text="Importance" />
+                                        <div className="NoteArea">
+                                            <div className="NoteArea__title">Notes</div>
+                                            <textarea
+                                                ref={taskNoteRef}
+                                                value={item.note}
+                                                disabled={item.isComplete}
+                                                onChange={e => dispatch(action.updateTodoNote({
+                                                    id: item.id, note: (e.target.value ? e.target.value : item.note),
+                                                }))}
+                                            />
+                                        </div>
                                     </>
                                 );
                             }

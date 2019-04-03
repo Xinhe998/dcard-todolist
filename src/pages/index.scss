@@ -81,6 +81,7 @@ body {
         width: 10px;
         border-radius: 4px;
         background-color: rgba(0,0,0,.3);
+        box-shadow: 0 0 1px rgba(255,255,255,.5);
         -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
     }
     &::-webkit-scrollbar-track {
@@ -115,6 +116,7 @@ body {
             white-space: nowrap; 
             overflow: hidden;
             text-overflow: ellipsis;
+            cursor: pointer;
         }
         input[type="checkbox"] {
             display: inline-block;

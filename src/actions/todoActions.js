@@ -13,3 +13,7 @@ export const updateTodoIsComplete = payload => (
 export const updateTodoName = payload => (
     { type: 'UPDATE_TODO_NAME', payload }
 );
+
+export const updateTodoNote = payload => (
+    { type: 'UPDATE_TODO_NOTE', payload }
+);
