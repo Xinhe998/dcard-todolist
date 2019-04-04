@@ -39,6 +39,7 @@ const Home = () => {
     const taskNoteRef = useRef();
     useAutoSize(textareaRef);
     useAutoSize(taskNoteRef);
+    console.log(state);
     return (
         <Store.Provider value={{ state, dispatch }}>
             <Header title="TodoList" />
@@ -84,10 +85,12 @@ const Home = () => {
                 <div className="CardScrollView CardScrollView--animatedIn2">
                     <div className="CardScrollView__detail">
                         {state.todos.map((item) => {
+                            
                             if (item.showingDetail) {
                                 return (
                                     <>
                                         <textarea
+                                            className="CardScrollView__detail__title"
                                             ref={textareaRef}
                                             value={item.text}
                                             disabled={item.isComplete}
@@ -103,16 +106,69 @@ const Home = () => {
                                         />
                                         <PaneButton icon={calendarImg} text="Expiration date" />
                                         <PaneButton icon={levelImg} text="Importance" />
-                                        <div className="NoteArea">
-                                            <div className="NoteArea__title">Notes</div>
+                                        <div className="CardScrollView__detail__block">
+                                            <div className="CardScrollView__detail__block__title">Notes</div>
                                             <textarea
+                                                className="CardScrollView__detail__block__textarea"
                                                 ref={taskNoteRef}
                                                 value={item.note}
                                                 disabled={item.isComplete}
                                                 onChange={e => dispatch(action.updateTodoNote({
-                                                    id: item.id, note: (e.target.value ? e.target.value : item.note),
+                                                    id: item.id, note: e.target.value,
                                                 }))}
+                                                placeholder="Insert your notes here"
                                             />
+                                        </div>
+                                        <div className="CardScrollView__detail__block">
+                                            <div className="CardScrollView__detail__block__title">SUB TASKS</div>
+                                            {(item.subtask.length > 0
+                                                ? (
+                                                    item.subtask.map(task => (
+                                                        <TodoItem
+                                                            key={task.id}
+                                                            text={task.text}
+                                                            isComplete={task.isComplete}
+                                                            allowEdit
+                                                            onClickCheckbox={() => {
+                                                                dispatch(action.updateTodoIsComplete({ id: task.id, isComplete: !task.isComplete }));
+                                                            }}
+                                                            del={() => {
+                                                                dispatch(action.deleteTodoItem(task));
+                                                            }}
+                                                            EditInputPlaceholder="Add a new subtask"
+                                                            handleEdit={e => dispatch(action.updateSubTask({
+                                                                id: item.id,
+                                                                subtask: {
+                                                                    id: task.id,
+                                                                    text: e.target.value,
+                                                                    isComplete: false,
+                                                                },
+                                                            }))}
+                                                        />
+                                                    ))
+                                                )
+                                                : (
+                                                    <TodoItem
+                                                        key={item.id}
+                                                        allowEdit
+                                                        onClickCheckbox={() => {
+                                                            dispatch(action.updateTodoIsComplete({ id: item.id, isComplete: !item.isComplete }));
+                                                        }}
+                                                        del={() => {
+                                                            dispatch(action.deleteTodoItem(item));
+                                                        }}
+                                                        EditInputPlaceholder="Add a new subtask"
+                                                        handleEdit={e => dispatch(action.addSubTask({
+                                                            id: item.id,
+                                                            subtask: {
+                                                                id: uuid(),
+                                                                text: e.target.value,
+                                                                isComplete: false,
+                                                            },
+                                                        }))}
+                                                    />
+                                                )
+                                            )}
                                         </div>
                                     </>
                                 );

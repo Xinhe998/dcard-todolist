@@ -17,3 +17,11 @@ export const updateTodoName = payload => (
 export const updateTodoNote = payload => (
     { type: 'UPDATE_TODO_NOTE', payload }
 );
+
+export const addSubTask = payload => (
+    { type: 'ADD_SUB_TASK', payload }
+);
+
+export const updateSubTask = payload => (
+    { type: 'UPDATE_SUB_TASK', payload }
+);
