@@ -35,8 +35,8 @@ const Home = () => {
             setNewTask('');
         }
     };
-    const textareaRef = useRef();
-    const taskNoteRef = useRef();
+    var textareaRef = useRef();
+    var taskNoteRef = useRef();
     useAutoSize(textareaRef);
     useAutoSize(taskNoteRef);
     return (
