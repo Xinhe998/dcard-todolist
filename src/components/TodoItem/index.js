@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 const TodoItem = ({
-    text, isComplete, onClickCheckbox, del, showGlow, allowEdit, handleEdit, EditInputPlaceholder,
+    text, isComplete, onClickCheckbox, del, showGlow, allowEdit, handleEdit, EditInputPlaceholder, handleClick,
 }) => (
-    <div className={showGlow ? 'CardScrollView__item CardScrollView__item--glow' : 'CardScrollView__item'}>
+    <div className={showGlow ? 'CardScrollView__item CardScrollView__item--glow' : 'CardScrollView__item'} onClick={handleClick}>
         <input type="checkbox" checked={isComplete} onClick={onClickCheckbox} />
         {allowEdit ? (
             <input
@@ -42,6 +42,7 @@ TodoItem.propTypes = {
     allowEdit: PropTypes.bool,
     handleEdit: PropTypes.func,
     EditInputPlaceholder: PropTypes.string,
+    handleClick: PropTypes.func,
 };
 TodoItem.defaultProps = {
     text: '',
@@ -52,5 +53,6 @@ TodoItem.defaultProps = {
     allowEdit: false,
     handleEdit: null,
     EditInputPlaceholder: '',
+    handleClick: null,
 };
 export default TodoItem;

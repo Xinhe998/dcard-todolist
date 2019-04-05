@@ -1,20 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
-export default (element) => {
+export default function useAutoSize(element) {
     const autosize = () => {
         if (element.current) {
+            console.log("!!",element.current);
             setTimeout(() => {
                 element.current.style.cssText = 'height: auto; padding: 0';
                 element.current.style.cssText = `height: ${element.current.scrollHeight}px`;
             }, 0);
         }
     };
-    useEffect(() => {
-        element.current.addEventListener('load', autosize);
+    useLayoutEffect(() => {
+        element.current.addEventListener('mouseover', autosize);
         element.current.addEventListener('keydown', autosize);
         return () => {
-            element.current.removeEventListener('load', autosize);
+            element.current.removeEventListener('mouseover', autosize);
             element.current.removeEventListener('keydown', autosize);
         };
     }, []);
-};
+}

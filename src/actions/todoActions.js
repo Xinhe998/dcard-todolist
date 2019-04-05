@@ -25,3 +25,7 @@ export const addSubTask = payload => (
 export const updateSubTask = payload => (
     { type: 'UPDATE_SUB_TASK', payload }
 );
+
+export const setTaskShowingDetail = payload => (
+    { type: 'SHOWING_DETAIL', payload }
+);

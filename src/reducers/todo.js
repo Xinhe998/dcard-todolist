@@ -22,6 +22,7 @@ const reducer = (state, action) => {
                 return item;
             }),
         };
+
     case 'UPDATE_TODO_NAME':
         return {
             todos: state.todos.map((item) => {
@@ -47,6 +48,7 @@ const reducer = (state, action) => {
             ...state,
             todos: state.todos.filter(t => t !== action.payload),
         };
+
     case 'ADD_SUB_TASK':
         return {
             todos: state.todos.map((item) => {
@@ -57,19 +59,34 @@ const reducer = (state, action) => {
                 return item;
             }),
         };
+
     case 'UPDATE_SUB_TASK':
         return {
             todos: state.todos.map((item) => {
-                if (action.payload.id === item.id) {
-                    item.subtask.map((task) => {
-                        if (action.payload.subtask.id === task.id) {
-                            console.log(Object.assign({}, item, { subtask: action.payload.subtask }));
-                            return (Object.assign({}, item, { subtask: action.payload.subtask }));  //return了正確的item
-                        }
-                    });
+                if (action.payload.id !== item.id) {
+                    return item;
                 }
-                console.log(item);
-                return item;  // 結果除了return沒動到的item外，要改的那個item又return舊的ＱＱ
+                const actionItem = {
+                    subtask: item.subtask.map((task) => {
+                        if (action.payload.subtask.id !== task.id) {
+                            return task;
+                        }
+                        return { ...task, ...action.payload.subtask };
+                    }),
+                };
+                return { ...item, ...actionItem };
+            }),
+        };
+
+    case 'SHOWING_DETAIL':
+        return {
+            todos: state.todos.map((item) => {
+                if (action.payload.id === item.id) {
+                    item.showingDetail = true;
+                    return Object.assign({}, item);
+                }
+                item.showingDetail = false;
+                return item;
             }),
         };
 

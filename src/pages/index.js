@@ -39,7 +39,6 @@ const Home = () => {
     const taskNoteRef = useRef();
     useAutoSize(textareaRef);
     useAutoSize(taskNoteRef);
-    console.log(state);
     return (
         <Store.Provider value={{ state, dispatch }}>
             <Header title="TodoList" />
@@ -59,6 +58,7 @@ const Home = () => {
                                 del={() => {
                                     dispatch(action.deleteTodoItem(item));
                                 }}
+                                handleClick={() => dispatch(action.setTaskShowingDetail({ id: item.id }))}
                             />
                         ))}
                     </div>
@@ -85,7 +85,7 @@ const Home = () => {
                 <div className="CardScrollView CardScrollView--animatedIn2">
                     <div className="CardScrollView__detail">
                         {state.todos.map((item) => {
-                            
+
                             if (item.showingDetail) {
                                 return (
                                     <>
@@ -121,7 +121,7 @@ const Home = () => {
                                         </div>
                                         <div className="CardScrollView__detail__block">
                                             <div className="CardScrollView__detail__block__title">SUB TASKS</div>
-                                            {(item.subtask.length > 0
+                                            {(item.subtask && item.subtask.length > 0
                                                 ? (
                                                     item.subtask.map(task => (
                                                         <TodoItem
@@ -148,27 +148,28 @@ const Home = () => {
                                                     ))
                                                 )
                                                 : (
-                                                    <TodoItem
-                                                        key={item.id}
-                                                        allowEdit
-                                                        onClickCheckbox={() => {
-                                                            dispatch(action.updateTodoIsComplete({ id: item.id, isComplete: !item.isComplete }));
-                                                        }}
-                                                        del={() => {
-                                                            dispatch(action.deleteTodoItem(item));
-                                                        }}
-                                                        EditInputPlaceholder="Add a new subtask"
-                                                        handleEdit={e => dispatch(action.addSubTask({
-                                                            id: item.id,
-                                                            subtask: {
-                                                                id: uuid(),
-                                                                text: e.target.value,
-                                                                isComplete: false,
-                                                            },
-                                                        }))}
-                                                    />
+                                                    null
                                                 )
                                             )}
+                                            <TodoItem
+                                                key={item.id}
+                                                allowEdit
+                                                onClickCheckbox={() => {
+                                                    dispatch(action.updateTodoIsComplete({ id: item.id, isComplete: !item.isComplete }));
+                                                }}
+                                                del={() => {
+                                                    dispatch(action.deleteTodoItem(item));
+                                                }}
+                                                EditInputPlaceholder="Add a new subtask"
+                                                handleEdit={e => dispatch(action.addSubTask({
+                                                    id: item.id,
+                                                    subtask: {
+                                                        id: uuid(),
+                                                        text: e.target.value,
+                                                        isComplete: false,
+                                                    },
+                                                }))}
+                                            />
                                         </div>
                                     </>
                                 );
