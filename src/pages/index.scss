@@ -1,291 +1,293 @@
 :root {
-    --dcard-blue: #006aa6;
-    --header-height: 60px;
-    --card-bg-color: #fafafa;
-    --card-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
-    --card-border-radius: 10px;
-    --text-color: #4a4a4a;
-    --task-font-size: 16px;
-    --xs-font-size: 12px;
-    --scrollbar-width: 7px;
-    --scrollbar-track-margin: 10px;
-    --scrollbar-background-color: rgba(0,0,0,.3);
-    --scrollbar-shadow: 0 0 1px rgba(255,255,255,.5);
-    --scrollbar-border-radius: 4px;
+  --dcard-blue: #006aa6;
+  --header-height: 60px;
+  --card-bg-color: #fafafa;
+  --card-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+  --card-border-radius: 10px;
+  --text-color: #4a4a4a;
+  --task-font-size: 16px;
+  --xs-font-size: 12px;
+  --scrollbar-width: 7px;
+  --scrollbar-track-margin: 10px;
+  --scrollbar-background-color: rgba(0, 0, 0, 0.3);
+  --scrollbar-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  --scrollbar-border-radius: 4px;
 }
 body {
-    background: #00324E;
-    overflow-y: hidden;
-    margin: 0;
-    padding: 0;
-    caret-color: var(--dcard-blue);
+  background: #00324e;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  caret-color: var(--dcard-blue);
 }
 .AppHeader {
-    background: var(--dcard-blue);
-    height: var(--header-height);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 99;
-    .AppHeader__logo-wrap {
-        color: #ffffff;
-        font-size: 25px;
-        line-height: 2.5;
-        overflow: hidden;
-        display: block;
-        height: var(--header-height);
-        margin-left: 30px;
-        letter-spacing: 1.5px;
-        font-weight: 500;
-    }
-}
-.AppContent {
-    height: calc(100vh - var(--header-height));
-    margin-top: var(--header-height);
-    padding-left: 60px;
-    padding-top: 30px;
-}
-.TasksToolBar__title {
+  background: var(--dcard-blue);
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  .AppHeader__logo-wrap {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 25px;
+    line-height: 2.5;
+    overflow: hidden;
+    display: block;
+    height: var(--header-height);
+    margin-left: 30px;
     letter-spacing: 1.5px;
     font-weight: 500;
-    height: 40px;
-    margin: 10px 0;
+  }
+}
+.AppContent {
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height);
+  padding-left: 60px;
+  padding-top: 30px;
+}
+.TasksToolBar__title {
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  height: 40px;
+  margin: 10px 0;
 }
 .CardScrollView {
-    position: relative;
-    height: calc(100vh - var(--header-height) - 120px);
-    width: 400px;
-    background: var(--card-bg-color);
-    box-shadow: var(--card-box-shadow);
-    border-radius: var(--card-border-radius);
-    overflow: hidden;
-    display: inline-block;
-    margin-right: 50px;
-    opacity: 0;
-    transition: all .5s;
-    @for $i from 1 through 2 {
-        &.CardScrollView--animatedIn#{$i} {
-            animation: card_animateIn .5s;
-            animation-delay: .3s*$i - 0.3;
-            animation-fill-mode: forwards;
-        }
+  position: relative;
+  height: calc(100vh - var(--header-height) - 120px);
+  width: 400px;
+  background: var(--card-bg-color);
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 50px;
+  opacity: 0;
+  transition: all 0.5s;
+  @for $i from 1 through 2 {
+    &.CardScrollView--animatedIn#{$i} {
+      animation: card_animateIn 0.5s;
+      animation-delay: 0.3s * $i - 0.3;
+      animation-fill-mode: forwards;
     }
+  }
 }
 .CardScrollView__list {
-    height: calc(100% - 60px);
-    padding: 0 20px;
-    padding-bottom: 20px;
-    overflow: scroll;
-    overflow-scrolling: touch;
-    margin: 1px;
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-        width: var(--scrollbar-width);
-    }
-    &::-webkit-scrollbar-thumb {
-        width: 10px;
-        border-radius: var(--scrollbar-border-radius);
-        background-color: var(--scrollbar-background-color);
-        box-shadow: var(--scrollbar-shadow);
-        -webkit-box-shadow: var(--scrollbar-shadow);
-    }
-    &::-webkit-scrollbar-track {
-        margin: var(--scrollbar-track-margin);
-    }
+  height: calc(100% - 60px);
+  padding: 0 20px;
+  padding-bottom: 20px;
+  overflow: scroll;
+  overflow-scrolling: touch;
+  margin: 1px;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    border-radius: var(--scrollbar-border-radius);
+    background-color: var(--scrollbar-background-color);
+    box-shadow: var(--scrollbar-shadow);
+    -webkit-box-shadow: var(--scrollbar-shadow);
+  }
+  &::-webkit-scrollbar-track {
+    margin: var(--scrollbar-track-margin);
+  }
 }
 
 .PaneBtn {
-    outline: 0;
-    font-size: var(--xs-font-size);
-    border-radius: 10px;
-    background: #fafafa;
-    border: 1px solid #d8d8d8;
-    box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    transition: all .5s;
-    display: inline-block;
-    height: 70px;
-    width: 120px;
-    overflow: hidden;
-    padding: 10px 7px 7px;
-    cursor: pointer;
-    margin-right: 20px;
-    color: var(--text-color);
-    &:hover {
-        box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  outline: 0;
+  font-size: var(--xs-font-size);
+  border-radius: 10px;
+  background: #fafafa;
+  border: 1px solid #d8d8d8;
+  box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  transition: all 0.5s;
+  display: inline-block;
+  height: 70px;
+  width: 120px;
+  overflow: hidden;
+  padding: 10px 7px 7px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: var(--text-color);
+  &:hover {
+    box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  .PaneBtn__icon {
+    display: block;
+    img {
+      width: 30px;
+      height: 30px;
     }
-    .PaneBtn__icon {
-        display: block;
-        img {
-            width: 30px;
-            height: 30px;
-        }
-    }
-    .PaneBtn__label {
-        display: block;
-        line-height: 2;
-    }
+  }
+  .PaneBtn__label {
+    display: block;
+    line-height: 2;
+  }
 }
 .TaskAddBar {
-    height: 50px;
-    max-height: 50px;
-    width: -webkit-fill-available;
-    position: absolute;
-    bottom: 0;
-    box-shadow: 0 -4px 10px 0  rgba(0, 0, 0, .1);
-    padding: 5px;
+  height: 50px;
+  max-height: 50px;
+  width: -webkit-fill-available;
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 -4px 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  vertical-align: middle;
+  background: var(--card-bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .TaskAddBar__input {
+    outline: 0;
+    height: calc(50px - 15px);
+    background: none;
+    width: 80%;
+    border: 1px solid #d8d8d8;
+    border-radius: 50px;
+    padding: 5px 5px 5px 10px;
+    transition: all 0.5s;
+    font-size: 15px;
     vertical-align: middle;
-    background: var(--card-bg-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .TaskAddBar__input {
-        outline: 0;
-        height: calc(50px - 15px);
-        background: none;
-        width: 80%;
-        border: 1px solid #d8d8d8;
-        border-radius: 50px;
-        padding: 5px 5px 5px 10px;
-        transition: all .5s;
-        font-size: 15px;
-        vertical-align: middle;
-        &:hover, &:focus {
-            border-color: var(--dcard-blue);
-        }
-        &:focus {
-            & + .TaskAddBar__submitBtn {
-                &:not(:disabled) {
-                    cursor: pointer;
-                    background: var(--dcard-blue);
-                    color: #ffffff;
-                    border: none;
-                    &:hover {
-                        background: #008ddf;
-                    }
-                }
-            }
-        }
-        &::placeholder {
-            color: #d8d8d8;
-        }
+    &:hover,
+    &:focus {
+      border-color: var(--dcard-blue);
     }
-    .TaskAddBar__submitBtn {
-        border-radius: 50%;
-        outline: 0;
-        width: 40px;
-        height: 40px;
-        padding: 5px;
-        font-size: 20px;
-        line-height: 0;
-        font-weight: 200;
-        vertical-align: middle;
-        transition: all .5s;
-        color: #d8d8d8;
+    &:focus {
+      & + .TaskAddBar__submitBtn {
         &:not(:disabled) {
-            cursor: pointer;
-            &:hover {
-                background: #008ddf;
-                border: none;
-                color: #ffffff;
-            }
+          cursor: pointer;
+          background: var(--dcard-blue);
+          color: #ffffff;
+          border: none;
+          &:hover {
+            background: #008ddf;
+          }
         }
+      }
     }
+    &::placeholder {
+      color: #d8d8d8;
+    }
+  }
+  .TaskAddBar__submitBtn {
+    border-radius: 50%;
+    outline: 0;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+    line-height: 0;
+    font-weight: 200;
+    vertical-align: middle;
+    transition: all 0.5s;
+    color: #d8d8d8;
+    &:not(:disabled) {
+      cursor: pointer;
+      &:hover {
+        background: #008ddf;
+        border: none;
+        color: #ffffff;
+      }
+    }
+  }
 }
 .CardScrollView__detail {
-    padding: 20px;
-    margin: 1px;
-    height: inherit;
-    overflow-y: scroll;
-    overflow-scrolling: touch;
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-        width: var(--scrollbar-width);
+  padding: 20px;
+  margin: 1px;
+  height: inherit;
+  overflow-y: scroll;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    border-radius: var(--scrollbar-border-radius);
+    background-color: var(--scrollbar-background-color);
+    box-shadow: var(--scrollbar-shadow);
+    -webkit-box-shadow: var(--scrollbar-shadow);
+  }
+  &::-webkit-scrollbar-track {
+    margin: var(--scrollbar-track-margin);
+  }
+  textarea {
+    outline: 0;
+    background-color: transparent;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    direction: ltr;
+    border: none;
+    border-radius: var(--card-border-radius);
+    transition: all 0.5s;
+    padding: 4px 8px 0;
+    width: -webkit-fill-available;
+    resize: none;
+    color: var(--text-color);
+    &:hover,
+    &:focus {
+      background: #f6f6f6;
     }
-    &::-webkit-scrollbar-thumb {
-        width: 10px;
-        border-radius: var(--scrollbar-border-radius);
-        background-color: var(--scrollbar-background-color);
-        box-shadow: var(--scrollbar-shadow);
-        -webkit-box-shadow: var(--scrollbar-shadow);
+    &:disabled {
+      cursor: not-allowed;
     }
-    &::-webkit-scrollbar-track {
-        margin: var(--scrollbar-track-margin);
+    &::placeholder {
+      color: #d8d8d8;
     }
-    textarea {
-        outline: 0;
-        background-color: transparent;
-        margin: 0;
-        overflow: hidden;
-        display: block;
-        direction: ltr;
-        border: none;
-        border-radius: var(--card-border-radius);
-        transition: all .5s;
-        padding: 4px 8px 0;
-        width: -webkit-fill-available;
-        resize: none;
-        color: var(--text-color);
-        &:hover, &:focus {
-            background: #f6f6f6;
-        }
-        &:disabled {
-            cursor: not-allowed;
-        }
-        &::placeholder {
-            color: #d8d8d8;
-        }
-        &.CardScrollView__detail__title {
-            width: 100%;
-            font-weight: 500;
-            font-size: 20px;
-            letter-spacing: 1.5px;
-        }
-        &.CardScrollView__detail__block__textarea {
-            font-size: var(--task-font-size);
-            margin-top: 15px;
-            position: relative;
-            width: 102%;
-            right: 2%;
-        }
+    &.CardScrollView__detail__title {
+      width: 100%;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 1.5px;
     }
-    .CardScrollView__detail__block {
-        margin-top: 30px;
-        .CardScrollView__detail__block__title {
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: var(--xs-font-size);
-            line-height: 1;
-        }
+    &.CardScrollView__detail__block__textarea {
+      font-size: var(--task-font-size);
+      margin-top: 15px;
+      position: relative;
+      width: 102%;
+      right: 2%;
     }
+  }
+  .CardScrollView__detail__block {
+    margin-top: 30px;
+    .CardScrollView__detail__block__title {
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: var(--xs-font-size);
+      line-height: 1;
+    }
+  }
 }
 @keyframes stroke_stretch {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 70%;
-    }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 70%;
+  }
 }
 @keyframes delBtn_slideIn {
-    from {
-        right: -10px;
-    }
-    to {
-        right: 15px;
-    }
+  from {
+    right: -10px;
+  }
+  to {
+    right: 15px;
+  }
 }
 @keyframes card_animateIn {
-    from {
-        opacity: 0;
-        top: 50px;
-    }
-    to {
-        opacity: 1;
-        top: 0px;
-    }
+  from {
+    opacity: 0;
+    top: 50px;
+  }
+  to {
+    opacity: 1;
+    top: 0px;
+  }
 }

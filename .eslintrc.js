@@ -23,14 +23,12 @@ module.exports = {
     ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        // Indent with 4 spaces
-        "indent": ["error", 4],
-
-        // Indent JSX with 4 spaces
-        "react/jsx-indent": ["error", 4],
-
-        // Indent props with 4 spaces
-        "react/jsx-indent-props": ["error", 4],
+        // Indent with 2 spaces
+        "indent": ["error", 2],
+        // Indent JSX with 2 spaces
+        "react/jsx-indent": ["error", 2],
+        // Indent props with 2 spaces
+        "react/jsx-indent-props": ["error", 2],
     },
     "settings": {
 
