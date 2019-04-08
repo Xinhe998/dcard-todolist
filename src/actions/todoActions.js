@@ -25,3 +25,5 @@ export const setTaskShowingDetail = payload => ({
   type: 'SHOWING_DETAIL',
   payload,
 });
+
+export const updateImportance = payload => ({ type: 'UPDATE_IMPORTANCE', payload });

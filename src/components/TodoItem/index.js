@@ -22,7 +22,7 @@ const TodoItem = ({
     }
     onClick={handleClick}
   >
-    <input type="checkbox" checked={isComplete} onClick={onClickCheckbox} />
+    <input type="checkbox" checked={isComplete} onClick={onClickCheckbox} onChange={() => {}} />
     {allowEdit ? (
       <input
         type="text"

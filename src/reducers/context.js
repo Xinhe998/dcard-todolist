@@ -10,6 +10,7 @@ const Store = React.createContext({
       note: '',
       subtask: [],
       dueDate: '',
+      importance: 'High',
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ const Store = React.createContext({
       note: '',
       subtask: [],
       dueDate: '',
+      importance: 'Medium',
     },
     {
       id: 3,
@@ -28,6 +30,7 @@ const Store = React.createContext({
       note: '',
       subtask: [],
       dueDate: '',
+      importance: '',
     },
   ],
 });

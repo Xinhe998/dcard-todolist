@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import uuid from '../../util';
+import uuid from '../../utils';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import TodoItem from '../TodoItem';

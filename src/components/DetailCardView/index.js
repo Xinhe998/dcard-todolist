@@ -24,11 +24,13 @@ const ListCardView = ({ state, setIsDatePickerModalOpen, setisImportanceModalOpe
                   icon={calendarImg}
                   text="Expiration date"
                   handleClick={() => setIsDatePickerModalOpen(true)}
+                  disabled={item.isComplete}
                 />
                 <PaneButton
                   icon={levelImg}
                   text="Importance"
                   handleClick={() => setisImportanceModalOpen(true)}
+                  disabled={item.isComplete}
                 />
                 <Notes item={item} />
                 <SubTasks item={item} />
