@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.icon {
+  font-family: 'Material Icons', serif;
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+/* Calendar */
+
+.calendar {
+  display: block;
+  position: relative;
+  width: 80%;
+  user-select: none;
+  margin: 0 auto 20px;
+}
+
+.calendar .header {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 115%;
+  padding: 1.5em 0;
+  color: var(--text-color);
+}
+
+.calendar .header .icon {
+  cursor: pointer;
+  transition: .15s ease-out;
+}
+
+.calendar .header .icon:hover {
+  transform: scale(1.75);
+  transition: .25s ease-out;
+  color: var(--main-color);
+}
+
+.calendar .header .icon:first-of-type {
+  margin-left: 1em;
+}
+
+.calendar .header .icon:last-of-type {
+  margin-right: 1em;
+}
+
+.calendar .days {
+  display: flex;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-color);
+  font-size: 70%;
+  padding: .75em 0;
+  .col-center {
+    flex-basis: calc(100%/7);
+    width: calc(100%/7);
+    text-align: center;
+    color: var(--dcard-blue);
+  }
+}
+
+.calendar .body .cell {
+  position: relative;
+  height: 3em;
+  overflow: hidden;
+  cursor: pointer;
+  span {
+    transition: all .5s;
+    padding: 10px;
+    border-radius: 50%;
+  }
+}
+.calendar .body .cell:hover {
+  span {
+    background: #e7e7e7;
+  }
+}
+
+.calendar .body .selected {
+  span {
+    background: var(--dcard-blue);
+    color: #ffffff;
+  }
+}
+
+.calendar .body .row {
+  display: flex;
+}
+
+.calendar .body .cell .number {
+  font-size: 82.5%;
+  line-height: 1.8;
+  width: 25px;
+  height: 25px;
+}
+
+.calendar .body .disabled {
+  color: #d8d8d8;
+  pointer-events: none;
+}
+
+
+.calendar .body .col {
+  display: flex;
+  flex-grow: 0;
+  flex-basis: calc(100%/7);
+  width: calc(100%/7);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

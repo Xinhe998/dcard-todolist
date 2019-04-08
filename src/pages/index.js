@@ -38,7 +38,11 @@ const Home = () => {
         />
       </div>
       <DatePickerModal isOpen={isDatePickerModalOpen} switchHandler={setIsDatePickerModalOpen} />
-      <ImportanceModal isOpen={isImportanceModalOpen} switchHandler={setisImportanceModalOpen} currentTask={() => findCurrentTask()} />
+      <ImportanceModal
+        isOpen={isImportanceModalOpen}
+        switchHandler={setisImportanceModalOpen}
+        currentTask={() => findCurrentTask()}
+      />
     </Store.Provider>
   );
 };

@@ -14,6 +14,7 @@ const ImportanceModal = ({ isOpen, switchHandler, currentTask }) => {
       id: current.id,
       importance: option,
     }));
+    switchHandler(false);
   };
   return (
     <Modal

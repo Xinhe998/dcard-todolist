@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
+import DatePicker from '../DatePicker';
 
 const DatePickerModal = ({ isOpen, switchHandler }) => (
   <Modal
@@ -9,7 +10,9 @@ const DatePickerModal = ({ isOpen, switchHandler }) => (
     onClose={() => switchHandler(false)}
     shouldCloseOnEsc
     showControlBtn
-  />
+  >
+    <DatePicker />
+  </Modal>
 );
 
 DatePickerModal.propTypes = {
