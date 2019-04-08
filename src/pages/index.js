@@ -14,6 +14,7 @@ import uuid from '../util';
 import Header from '../components/Header';
 import TodoItem from '../components/TodoItem';
 import PaneButton from '../components/PaneButton';
+import Modal from '../components/Modal';
 
 import calendarImg from '../assets/calendar.png';
 import levelImg from '../assets/level.png';
@@ -22,7 +23,8 @@ const Home = () => {
   const globalStore = useContext(Store);
   const [state, dispatch] = useReducer(reducer, globalStore);
   const [newTask, setNewTask] = useState('');
-
+  const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
+  const [isImportanceModalOpen, setisImportanceModalOpen] = useState(false);
   const addTask = () => {
     if (newTask.trim() !== '') {
       const newId = uuid();
@@ -39,8 +41,8 @@ const Home = () => {
       setNewTask('');
     }
   };
-  var textareaRef = useRef();
-  var taskNoteRef = useRef();
+  const textareaRef = useRef();
+  const taskNoteRef = useRef();
   useAutoSize(textareaRef);
   useAutoSize(taskNoteRef);
   return (
@@ -124,8 +126,8 @@ const Home = () => {
                         }
                       }}
                     />
-                    <PaneButton icon={calendarImg} text="Expiration date" />
-                    <PaneButton icon={levelImg} text="Importance" />
+                    <PaneButton icon={calendarImg} text="Expiration date" handleClick={() => setIsDatePickerModalOpen(true)} />
+                    <PaneButton icon={levelImg} text="Importance" handleClick={() => setisImportanceModalOpen(true)} />
                     <div className="CardScrollView__detail__block">
                       <div className="CardScrollView__detail__block__title">
                         Notes
@@ -216,6 +218,22 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isDatePickerModalOpen}
+        title="Pick Date"
+        onClose={() => setIsDatePickerModalOpen(false)}
+        shouldCloseOnEsc
+        showControlBtn
+      />
+      <Modal
+        isOpen={isImportanceModalOpen}
+        title="Importance"
+        onClose={() => setisImportanceModalOpen(false)}
+        shouldCloseOnEsc
+        showControlBtn={false}
+      >
+       
+      </Modal>
     </Store.Provider>
   );
 };

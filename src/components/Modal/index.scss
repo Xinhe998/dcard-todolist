@@ -1,0 +1,57 @@
+.Modal__backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Modal__wrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+  max-width: 500px;
+  min-height: 300px;
+  width: 500px;
+  min-height: 300px;
+}
+.Modal__content {
+  height: calc(100% - 108px);
+}
+.Modal__title {
+  height: 54px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-size: var(--modal-title-font-size);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text-color);
+  box-shadow: var(--card-box-shadow);
+}
+.Modal__button-group {
+  height: 54px;
+  display: flex;
+  user-select: none;
+  button {
+    outline: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 50%;
+    border-left: 1px solid #e7e7e7;
+    transition: all .5s;
+    &:hover  {
+      background-color: #e7e7e7;
+    }
+    &.Modal__button-group__confirm {
+      font-weight: 600;
+    }
+  }
+}

@@ -12,10 +12,9 @@ export default function useAutoSize(element) {
     }
   };
   useEffect(() => {
-    element.current.addEventListener('mouseover', autosize);
+    autosize();
     element.current.addEventListener('keydown', autosize);
     return () => {
-      element.current.removeEventListener('mouseover', autosize);
       element.current.removeEventListener('keydown', autosize);
     };
   });

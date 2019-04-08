@@ -29,6 +29,7 @@ module.exports = {
         "react/jsx-indent": ["error", 2],
         // Indent props with 2 spaces
         "react/jsx-indent-props": ["error", 2],
+        "import/no-extraneous-dependencies": ["warning", {"devDependencies": true}]
     },
     "settings": {
 
