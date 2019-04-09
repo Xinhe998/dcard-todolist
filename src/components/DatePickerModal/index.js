@@ -19,7 +19,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
       }),
     );
   };
-  return (
+  return current ? (
     <Modal
       isOpen={isOpen}
       title="Pick Date"
@@ -36,7 +36,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
     >
       <DatePicker defaultDate={selectedDate} onSelect={setSelectedDate} />
     </Modal>
-  );
+  ) : null;
 };
 
 DatePickerModal.propTypes = {

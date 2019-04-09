@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import uuid from '../../utils';
 import Store from '../../reducers/context';

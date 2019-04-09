@@ -105,6 +105,18 @@ const reducer = (state, action) => {
       }),
     };
 
+  case 'FIRST_TASK_SHOWING_DETAIL':
+    return {
+      todos: state.todos.map((item, index) => {
+        if (index === 0) {
+          item.showingDetail = true;
+          return Object.assign({}, item);
+        }
+        item.showingDetail = false;
+        return item;
+      }),
+    };
+
   case 'UPDATE_IMPORTANCE':
     return {
       todos: state.todos.map((item) => {

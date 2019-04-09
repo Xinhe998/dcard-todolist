@@ -21,6 +21,7 @@ const ListCardView = ({ state }) => {
       break;
     }
   };
+  console.log(state);
   return (
     <div className="CardScrollView CardScrollView--animatedIn1">
       <div className="CardScrollView__list">
@@ -42,6 +43,7 @@ const ListCardView = ({ state }) => {
             }}
             del={() => {
               dispatch(action.deleteTodoItem(item));
+              dispatch(action.setFirstTaskShowingDetail());
             }}
             handleClick={() => dispatch(action.setTaskShowingDetail({ id: item.id }))
             }

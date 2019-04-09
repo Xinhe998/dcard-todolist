@@ -25,7 +25,9 @@ const TodoItem = ({
         ? 'CardScrollView__item CardScrollView__item--glow'
         : 'CardScrollView__item'
     }
-    onClick={handleClick}
+    onClick={(e) => {
+      if (!e.target.classList.contains('delBtn')) handleClick();
+    }}
   >
     <input
       type="checkbox"
@@ -57,7 +59,13 @@ const TodoItem = ({
     {isComplete ? (
       <>
         <div className="stroke" />
-        <div className="delBtn" onClick={del} />
+        <div
+          className="delBtn"
+          onClick={(e) => {
+            e.stopPropagation();
+            del();
+          }}
+        />
       </>
     ) : null}
   </div>

@@ -41,4 +41,8 @@ export const updateSubTaskIsComplete = payload => ({
   payload,
 });
 
+export const setFirstTaskShowingDetail = () => ({
+  type: 'FIRST_TASK_SHOWING_DETAIL',
+});
+
 export const updateImportance = payload => ({ type: 'UPDATE_IMPORTANCE', payload });
