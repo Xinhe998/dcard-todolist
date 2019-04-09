@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 import './index.scss';
 
-const DatePicker = ({ dafaultDate, onSelect }) => {
+const DatePicker = ({ defaultDate, onSelect }) => {
   const [currentMonth, setcurrentMonth] = useState(new Date());
   const renderHeader = () => {
     const dateFormat = 'MMMM YYYY';
@@ -60,7 +60,7 @@ const DatePicker = ({ dafaultDate, onSelect }) => {
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
                 ? 'disabled'
-                : dateFns.isSameDay(day, (dafaultDate ? dafaultDate : selectedDate))
+                : dateFns.isSameDay(day, defaultDate)
                 ? 'selected'
                 : ''
             }`}
@@ -104,12 +104,12 @@ const DatePicker = ({ dafaultDate, onSelect }) => {
 };
 
 DatePicker.propTypes = {
-  dafaultDate: PropTypes.string,
+  defaultDate: PropTypes.string,
   onSelect: PropTypes.func,
 };
 
 DatePicker.defaultProps = {
-  dafaultDate: null,
+  defaultDate: null,
   onSelect: null,
 };
 export default DatePicker;

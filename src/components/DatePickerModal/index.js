@@ -34,7 +34,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
       shouldCloseOnEsc
       showControlBtn
     >
-      <DatePicker dafaultDate={selectedDate} onSelect={setSelectedDate} />
+      <DatePicker defaultDate={selectedDate} onSelect={setSelectedDate} />
     </Modal>
   );
 };
