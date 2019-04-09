@@ -1,8 +1,5 @@
 /* eslint-disable func-names */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable object-curly-newline */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { shallow, configure, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PaneButton from '../index';
@@ -12,7 +9,7 @@ import calendar from '../../../assets/calendar.png';
 // 以該解析器提供給 Enzyme 做渲染 Component 的設置
 configure({ adapter: new Adapter() });
 
-describe('<PaneButton />', function() {
+describe('<PaneButton />', function () {
   let testComp;
   beforeEach(() => {
     jest.resetModules();
@@ -52,6 +49,19 @@ describe('<PaneButton />', function() {
     // 測試找到一個<button>
     it('should render one <button>', () => {
       expect(testComp.find('button')).toHaveLength(1);
+    });
+    // 測試icon
+    it('should render icon', () => {
+      expect(testComp.find('img').prop('src')).toEqual(calendar);
+    });
+    // 測試text
+    it('should render text', () => {
+      expect(testComp.find('.PaneBtn__label').text()).toEqual('Test');
+    });
+    // 測試handleClick
+    it('test click event', () => {
+      testComp.simulate('click');
+      expect(this.params.handleClick.mock.calls.length).toEqual(1);
     });
   });
 });
