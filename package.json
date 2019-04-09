@@ -5,9 +5,9 @@
   "description": "2019 Dcard Web Development Intern - Take home test",
   "main": "index.js",
   "scripts": {
-    "start": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom",
-    "coverage": "yarn run test -- --coverage"
+    "coverage": "yarn run test -- --coverage",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
   },
   "author": "Xinhe",
   "license": "ISC",
@@ -65,9 +65,6 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
