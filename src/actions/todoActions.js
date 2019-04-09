@@ -31,4 +31,14 @@ export const updateDueDate = payload => ({
   payload,
 });
 
+export const deleteSubTask = payload => ({
+  type: 'DELETE_SUB_TASK',
+  payload,
+});
+
+export const updateSubTaskIsComplete = payload => ({
+  type: 'UPDATE_SUB_TASK_IS_COMPLETE',
+  payload,
+});
+
 export const updateImportance = payload => ({ type: 'UPDATE_IMPORTANCE', payload });

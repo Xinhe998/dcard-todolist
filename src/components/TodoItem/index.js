@@ -13,8 +13,11 @@ const TodoItem = ({
   importance,
   allowEdit,
   handleEdit,
+  handleFocus,
+  handleBlur,
   EditInputPlaceholder,
   handleClick,
+  inputRef,
 }) => (
   <div
     className={
@@ -24,15 +27,23 @@ const TodoItem = ({
     }
     onClick={handleClick}
   >
-    <input type="checkbox" checked={isComplete} onClick={onClickCheckbox} onChange={() => {}} />
+    <input
+      type="checkbox"
+      checked={isComplete}
+      onClick={onClickCheckbox}
+      onChange={() => {}}
+    />
     {allowEdit ? (
       <input
         type="text"
         className="editInput"
         disabled={isComplete}
         value={text}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onChange={handleEdit}
         placeholder={EditInputPlaceholder}
+        ref={inputRef}
       />
     ) : (
       <>
@@ -40,11 +51,9 @@ const TodoItem = ({
         <label className="CardScrollView__item__text">{text}</label>
       </>
     )}
-    {
-      date ? (
-        <label className="CardScrollView__item__date">{date.toString()}</label>
-      ) : null
-    }
+    {date && !isComplete ? (
+      <label className="CardScrollView__item__date">{date.toString()}</label>
+    ) : null}
     {isComplete ? (
       <>
         <div className="stroke" />
@@ -62,10 +71,16 @@ TodoItem.propTypes = {
   showGlow: PropTypes.bool,
   allowEdit: PropTypes.bool,
   handleEdit: PropTypes.func,
+  handleFocus: PropTypes.func,
+  handleBlur: PropTypes.func,
   EditInputPlaceholder: PropTypes.string,
   handleClick: PropTypes.func,
   date: PropTypes.string,
   importance: PropTypes.string,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };
 TodoItem.defaultProps = {
   text: '',
@@ -79,5 +94,8 @@ TodoItem.defaultProps = {
   handleClick: null,
   date: '',
   importance: '',
+  inputRef: null,
+  handleFocus: null,
+  handleBlur: null,
 };
 export default TodoItem;

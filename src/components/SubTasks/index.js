@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import uuid from '../../utils';
 import Store from '../../reducers/context';
@@ -7,21 +7,33 @@ import TodoItem from '../TodoItem';
 
 const SubTasks = ({ item }) => {
   const dispatch = useContext(Store);
+  const shouldFocusRef = useRef();
+  const focusWhenAdd = () => {
+    setTimeout(() => {
+      if (shouldFocusRef.current) shouldFocusRef.current.focus();
+    }, 0);
+  };
   return (
     <div className="CardScrollView__detail__block">
       <div className="CardScrollView__detail__block__title">SUB TASKS</div>
       {item.subtask && item.subtask.length > 0
-        ? item.subtask.map(task => (
+        ? item.subtask.map((task, index) => (
           <TodoItem
             key={task.id}
             text={task.text}
             isComplete={task.isComplete}
             allowEdit
+            inputRef={
+              item.subtask.length === index + 1 ? shouldFocusRef : null
+            }
             onClickCheckbox={() => {
               dispatch(
-                action.updateTodoIsComplete({
-                  id: task.id,
-                  isComplete: !task.isComplete,
+                action.updateSubTask({
+                  id: item.id,
+                  subtask: {
+                    id: task.id,
+                    isComplete: !task.isComplete,
+                  },
                 }),
               );
             }}
@@ -40,35 +52,37 @@ const SubTasks = ({ item }) => {
               }),
             )
             }
+            handleBlur={(e) => {
+              if (!e.target.value) {
+                dispatch(action.deleteSubTask({
+                  id: item.id,
+                  subtask: {
+                    id: task.id,
+                  },
+                }));
+              }
+            }}
           />
         ))
         : null}
       <TodoItem
         key={item.id}
         allowEdit
-        onClickCheckbox={() => {
+        EditInputPlaceholder="Add a new subtask"
+        handleFocus={(e) => {
           dispatch(
-            action.updateTodoIsComplete({
+            action.addSubTask({
               id: item.id,
-              isComplete: !item.isComplete,
+              subtask: {
+                id: uuid(),
+                text: e.target.value,
+                isComplete: false,
+              },
             }),
           );
+          focusWhenAdd();
         }}
-        del={() => {
-          dispatch(action.deleteTodoItem(item));
-        }}
-        EditInputPlaceholder="Add a new subtask"
-        handleEdit={e => dispatch(
-          action.addSubTask({
-            id: item.id,
-            subtask: {
-              id: uuid(),
-              text: e.target.value,
-              isComplete: false,
-            },
-          }),
-        )
-        }
+        
       />
     </div>
   );

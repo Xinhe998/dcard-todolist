@@ -17,6 +17,8 @@ const TaskAddBar = () => {
           showingDetail: true,
           note: '',
           subtask: [],
+          dueDate: '',
+          importance: '',
         }),
       );
       dispatch(action.setTaskShowingDetail({ id: newId }));

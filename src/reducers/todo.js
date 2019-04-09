@@ -52,6 +52,18 @@ const reducer = (state, action) => {
       todos: state.todos.filter(t => t !== action.payload),
     };
 
+  case 'DELETE_SUB_TASK':
+    return {
+      ...state,
+      todos: state.todos.map((item) => {
+        if (action.payload.id === item.id) {
+          item.subtask = item.subtask.filter(t => t.id !== action.payload.subtask.id);
+          return Object.assign({}, item);
+        }
+        return item;
+      }),
+    };
+
   case 'ADD_SUB_TASK':
     return {
       todos: state.todos.map((item) => {
@@ -112,6 +124,8 @@ const reducer = (state, action) => {
         return item;
       }),
     };
+
+ 
 
   default:
     return state;
