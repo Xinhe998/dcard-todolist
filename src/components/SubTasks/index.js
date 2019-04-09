@@ -38,7 +38,12 @@ const SubTasks = ({ item }) => {
               );
             }}
             del={() => {
-              dispatch(action.deleteTodoItem(task));
+              dispatch(action.deleteSubTask({
+                id: item.id,
+                subtask: {
+                  id: task.id,
+                },
+              }));
             }}
             EditInputPlaceholder="Add a new subtask"
             handleEdit={e => dispatch(

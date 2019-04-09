@@ -118,5 +118,8 @@
     &::placeholder {
       color: #d8d8d8;
     }
+    &:disabled {
+      color: #d8d8d8;
+    }
   }
 }
