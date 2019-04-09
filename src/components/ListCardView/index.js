@@ -1,26 +1,26 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import TodoItem from '../TodoItem';
 import TaskAddBar from '../TaskAddBar';
-import { format } from 'date-fns';
 
 const ListCardView = ({ state }) => {
   const dispatch = useContext(Store);
   const dateFormat = 'MMM D';
   const convertImportance = (importance) => {
     switch (importance) {
-      case 'High':
-        return '!!!';
-      case 'Medium':
-        return '!!';
-      case 'Low':
-        return '!';
-      default:
-        break;
+    case 'High':
+      return '!!!';
+    case 'Medium':
+      return '!!';
+    case 'Low':
+      return '!';
+    default:
+      break;
     }
-  }
+  };
   return (
     <div className="CardScrollView CardScrollView--animatedIn1">
       <div className="CardScrollView__list">
