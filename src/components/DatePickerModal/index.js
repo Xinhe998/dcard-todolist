@@ -24,7 +24,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
       isOpen={isOpen}
       title="Pick Date"
       onClose={() => {
-        setSelectedDate(current.dueDate);
+        setSelectedDate(current.dueDate ? current.dueDate : new Date());
         switchHandler(false);
       }}
       Confirm={() => {

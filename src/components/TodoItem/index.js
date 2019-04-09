@@ -9,6 +9,8 @@ const TodoItem = ({
   onClickCheckbox,
   del,
   showGlow,
+  date,
+  importance,
   allowEdit,
   handleEdit,
   EditInputPlaceholder,
@@ -33,8 +35,16 @@ const TodoItem = ({
         placeholder={EditInputPlaceholder}
       />
     ) : (
-      <label>{text}</label>
+      <>
+        <label className="CardScrollView__item__importance">{importance}</label>
+        <label className="CardScrollView__item__text">{text}</label>
+      </>
     )}
+    {
+      date ? (
+        <label className="CardScrollView__item__date">{date.toString()}</label>
+      ) : null
+    }
     {isComplete ? (
       <>
         <div className="stroke" />
@@ -54,6 +64,8 @@ TodoItem.propTypes = {
   handleEdit: PropTypes.func,
   EditInputPlaceholder: PropTypes.string,
   handleClick: PropTypes.func,
+  date: PropTypes.string,
+  importance: PropTypes.string,
 };
 TodoItem.defaultProps = {
   text: '',
@@ -65,5 +77,7 @@ TodoItem.defaultProps = {
   handleEdit: null,
   EditInputPlaceholder: '',
   handleClick: null,
+  date: '',
+  importance: '',
 };
 export default TodoItem;

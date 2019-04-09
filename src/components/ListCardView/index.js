@@ -4,9 +4,23 @@ import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import TodoItem from '../TodoItem';
 import TaskAddBar from '../TaskAddBar';
+import { format } from 'date-fns';
 
 const ListCardView = ({ state }) => {
   const dispatch = useContext(Store);
+  const dateFormat = 'MMM D';
+  const convertImportance = (importance) => {
+    switch (importance) {
+      case 'High':
+        return '!!!';
+      case 'Medium':
+        return '!!';
+      case 'Low':
+        return '!';
+      default:
+        break;
+    }
+  }
   return (
     <div className="CardScrollView CardScrollView--animatedIn1">
       <div className="CardScrollView__list">
@@ -16,6 +30,8 @@ const ListCardView = ({ state }) => {
             text={item.text}
             isComplete={item.isComplete}
             showGlow={item.showingDetail}
+            date={item.dueDate ? format(item.dueDate, dateFormat) : ''}
+            importance={convertImportance(item.importance)}
             onClickCheckbox={() => {
               dispatch(
                 action.updateTodoIsComplete({
