@@ -18,10 +18,10 @@ module.exports = {
   },
   output: {
     // 將輸出的檔案放到這個資料夾下
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public/'),
     // 將所有依賴的模組都合併輸出到這個檔案
     filename: 'index_bundle.js',
-    publicPath: '/',
+    // publicPath: '/',
   },
   mode: 'development',
   module: {
@@ -41,11 +41,15 @@ module.exports = {
       },
     ],
   },
+  devtool: 'eval',
   // webpack-dev-server 設定
   devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
     inline: true,
     port: 3000,
     historyApiFallback: true,
+    hot: true,
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), HTMLWebpackPluginConfig],
 };

@@ -12,6 +12,7 @@ const Modal = ({
   cancelBtnText,
   confirmBtnText,
   onClose,
+  Confirm,
   children,
 }) => {
   const modalRef = useRef();
@@ -31,7 +32,11 @@ const Modal = ({
             >
               {cancelBtnText}
             </button>
-            <button type="button" className="Modal__button-group__confirm">
+            <button
+              type="button"
+              className="Modal__button-group__confirm"
+              onClick={Confirm}
+            >
               {confirmBtnText}
             </button>
           </div>
@@ -49,6 +54,7 @@ Modal.propTypes = {
   cancelBtnText: PropTypes.string,
   confirmBtnText: PropTypes.string,
   onClose: PropTypes.func,
+  Confirm: PropTypes.func,
   children: PropTypes.node,
 };
 
@@ -60,6 +66,7 @@ Modal.defaultProps = {
   cancelBtnText: 'Cancel',
   confirmBtnText: 'Save',
   onClose: null,
+  Confirm: null,
   children: null,
 };
 

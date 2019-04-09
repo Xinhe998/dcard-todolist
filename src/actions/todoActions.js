@@ -26,4 +26,9 @@ export const setTaskShowingDetail = payload => ({
   payload,
 });
 
+export const updateDueDate = payload => ({
+  type: 'UPDATE_DUE_DATE',
+  payload,
+});
+
 export const updateImportance = payload => ({ type: 'UPDATE_IMPORTANCE', payload });

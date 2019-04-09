@@ -1,4 +1,5 @@
 const reducer = (state, action) => {
+  console.log(state,action);
   switch (action.type) {
   case 'ADD_TODO':
     if (!action.payload) {
@@ -97,6 +98,16 @@ const reducer = (state, action) => {
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, { importance: action.payload.importance });
+        }
+        return item;
+      }),
+    };
+
+  case 'UPDATE_DUE_DATE':
+    return {
+      todos: state.todos.map((item) => {
+        if (action.payload.id === item.id) {
+          return Object.assign({}, item, { dueDate: action.payload.dueDate });
         }
         return item;
       }),

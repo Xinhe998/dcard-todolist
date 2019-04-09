@@ -1,14 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Store from '../../reducers/context';
 import dateFns from 'date-fns';
-import * as action from '../../actions/todoActions';
 import './index.scss';
 
-const DatePicker = ({}) => {
-  const dispatch = useContext(Store);
+const DatePicker = ({ dafaultDate, onSelect }) => {
   const [currentMonth, setcurrentMonth] = useState(new Date());
-  const [selectedDate, setselectedDate] = useState(new Date());
   const renderHeader = () => {
     const dateFormat = 'MMMM YYYY';
     return (
@@ -64,7 +60,7 @@ const DatePicker = ({}) => {
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
                 ? 'disabled'
-                : dateFns.isSameDay(day, selectedDate)
+                : dateFns.isSameDay(day, (dafaultDate ? dafaultDate : selectedDate))
                 ? 'selected'
                 : ''
             }`}
@@ -87,7 +83,7 @@ const DatePicker = ({}) => {
   };
 
   const onDateClick = (day) => {
-    setselectedDate(day);
+    onSelect(day);
   };
 
   const nextMonth = () => {
@@ -108,14 +104,12 @@ const DatePicker = ({}) => {
 };
 
 DatePicker.propTypes = {
-  isOpen: PropTypes.bool,
-  switchHandler: PropTypes.func,
-  currentTask: PropTypes.func,
+  dafaultDate: PropTypes.string,
+  onSelect: PropTypes.func,
 };
 
 DatePicker.defaultProps = {
-  isOpen: false,
-  switchHandler: null,
-  currentTask: null,
+  dafaultDate: null,
+  onSelect: null,
 };
 export default DatePicker;

@@ -37,7 +37,11 @@ const Home = () => {
           setisImportanceModalOpen={setisImportanceModalOpen}
         />
       </div>
-      <DatePickerModal isOpen={isDatePickerModalOpen} switchHandler={setIsDatePickerModalOpen} />
+      <DatePickerModal
+        isOpen={isDatePickerModalOpen}
+        switchHandler={setIsDatePickerModalOpen}
+        currentTask={() => findCurrentTask()}
+      />
       <ImportanceModal
         isOpen={isImportanceModalOpen}
         switchHandler={setisImportanceModalOpen}

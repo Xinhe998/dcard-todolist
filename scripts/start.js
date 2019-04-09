@@ -64,6 +64,8 @@ choosePort(HOST, DEFAULT_PORT)
       proxyConfig,
       urls.lanUrlForConfig,
     );
+    WebpackDevServer.addDevServerEntrypoints(config, serverConfig);
+
     const devServer = new WebpackDevServer(compiler, serverConfig);
     // Launch WebpackDevServer.
     devServer.listen(port, HOST, (err) => {

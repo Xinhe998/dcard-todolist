@@ -21,7 +21,9 @@ describe('<PaneButton />', function () {
     };
 
     this.makeSubject = () => {
-      const { icon, text, handleClick, disabled } = this.params;
+      const {
+        icon, text, handleClick, disabled,
+      } = this.params;
 
       testComp = shallow(
         <PaneButton
