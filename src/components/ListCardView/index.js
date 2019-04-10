@@ -21,7 +21,6 @@ const ListCardView = ({ state }) => {
       break;
     }
   };
-  console.log(state);
   return (
     <div className="CardScrollView CardScrollView--animatedIn1">
       <div className="CardScrollView__list">

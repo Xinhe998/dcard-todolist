@@ -4,7 +4,7 @@ import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import useClickOutside from '../../hooks/useClickOutside';
 
-import no_result from '../../assets/no_result.png';
+import noResult from '../../assets/no_result.png';
 
 import './index.scss';
 
@@ -15,7 +15,9 @@ const AutoComplete = ({
   const searchRef = useRef();
   const autocompleteRef = useRef();
   const [searchText, setSearchText] = useState('');
+  const searchResult = data.filter(d => d.text.includes(searchText) && searchText !== '');
   useClickOutside(isOpen, autocompleteRef, () => {
+    setSearchText('');
     searchRef.current.classList.add('closing');
     setTimeout(() => {
       searchRef.current.classList.remove('closing');
@@ -62,19 +64,25 @@ const AutoComplete = ({
       {isOpen && searchText ? (
         <div className="AutoComplete__result-wrapper">
           <ul className="AutoComplete__result-list">
-            {data
-              .filter(d => d.text.includes(searchText))
-              .map(item => (
+            {searchResult.length ? (
+              searchResult.map(item => (
                 <li
                   key={item.id}
                   onClick={() => {
                     dispatch(action.setTaskShowingDetail({ id: item.id }));
                     switchHandler(false);
+                    setSearchText('');
                   }}
                 >
                   {item.text}
                 </li>
-              ))}
+              ))
+            ) : (
+              <div className="AutoComplete__result__no-result-wrapper">
+                <img className="AutoComplete__result__no-result-img" src={noResult} alt="no search result." />
+                <p className="AutoComplete__result__no-result-info">No Result</p>
+              </div>
+            )}
           </ul>
         </div>
       ) : null}

@@ -22,7 +22,7 @@ const Header = ({ title, state }) => {
 };
 Header.propTypes = {
   title: PropTypes.string,
-  state: PropTypes.array,
+  state: PropTypes.object,
 };
 Header.defaultProps = {
   title: '',

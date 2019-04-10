@@ -91,6 +91,16 @@
       }
     }
   }
+  .AutoComplete__result__no-result-wrapper {
+    width: 100%;
+    text-align: center;
+  }
+  .AutoComplete__result__no-result-img {
+    width: 60%;
+  }
+  .AutoComplete__result__no-result-info {
+    margin-bottom: 20px;
+  }
 }
 
 @keyframes searchField_stretch {
