@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 import './index.scss';
 
-const DatePicker = ({ defaultDate, onSelect }) => {
+const DatePicker = ({ defaultDate, onSelect, disabledPastDate }) => {
   const [currentMonth, setcurrentMonth] = useState(new Date());
   const renderHeader = () => {
     const dateFormat = 'MMMM YYYY';
@@ -27,11 +27,13 @@ const DatePicker = ({ defaultDate, onSelect }) => {
   const renderDays = () => {
     const dateFormat = 'dddd';
     const days = [];
-    let startDate = dateFns.startOfWeek(currentMonth);
+    const startDate = dateFns.startOfWeek(currentMonth);
     for (let i = 0; i < 7; i++) {
       days.push(
         <div className="col col-center" key={i}>
-          {dateFns.format(dateFns.addDays(startDate, i), dateFormat).substring(0, 3)}
+          {dateFns
+            .format(dateFns.addDays(startDate, i), dateFormat)
+            .substring(0, 3)}
         </div>,
       );
     }
@@ -59,10 +61,13 @@ const DatePicker = ({ defaultDate, onSelect }) => {
           <div
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
+              || (disabledPastDate
+                ? dateFns.isPast(day) && !dateFns.isToday(day)
+                : null)
                 ? 'disabled'
                 : dateFns.isSameDay(day, defaultDate)
-                ? 'selected'
-                : ''
+                  ? 'selected'
+                  : ''
             }`}
             key={day}
             onClick={() => onDateClick(dateFns.parse(cloneDay))}
@@ -106,10 +111,12 @@ const DatePicker = ({ defaultDate, onSelect }) => {
 DatePicker.propTypes = {
   defaultDate: PropTypes.string,
   onSelect: PropTypes.func,
+  disabledPastDate: PropTypes.bool,
 };
 
 DatePicker.defaultProps = {
-  defaultDate: null,
+  defaultDate: '',
   onSelect: null,
+  disabledPastDate: true,
 };
 export default DatePicker;

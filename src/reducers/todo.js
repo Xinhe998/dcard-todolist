@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log(state,action);
   switch (action.type) {
   case 'ADD_TODO':
     if (!action.payload) {

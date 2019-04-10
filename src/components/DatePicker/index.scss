@@ -83,7 +83,7 @@
     }
     &:not(.selected):hover {
       span {
-        background: #e7e7e7;
+        background: var(--secondary-color-gray2);
       }
     }
     .number {
@@ -94,7 +94,7 @@
     }
   }
   .disabled {
-    color: #d8d8d8;
+    color: var(--secondary-color-gray1);
     pointer-events: none;
   }
   .col {

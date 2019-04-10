@@ -1,0 +1,124 @@
+.AutoComplete {
+  // width: 300px;
+  max-width: 500px;
+  position: relative;
+  margin-left: auto;
+  margin-right: 0px;
+  right: 25px;
+  // transition: all .5s;
+  &.AutoComplete--active {
+    margin-right: 80px;
+    right: 0;
+    .AutoComplete__button {
+      position: absolute;
+      top: 0px;
+      right: -60px;
+    }
+  }
+  .AutoComplete__button {
+    background: none;
+    border: none;
+    color: var(--secondary-color-gray1);
+    outline: 0;
+    cursor: pointer;
+    float: right;
+    border-radius: 50px;
+    width: 36px;
+    height: 36px;
+    padding: 5px 3px;
+    text-align: center;
+    transition: all 0.2s;
+    &:hover {
+      background: #005a8d;
+    }
+  }
+}
+
+.AutoComplete__form-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.AutoComplete__form {
+  width: 100%;
+}
+.AutoComplete__form__input {
+  width: 0%;
+  padding: 5px 50px 5px 10px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  height: 28px;
+  border-radius: 10px;
+  background: #005a8d;
+  outline: 0;
+  color: #ffffff;
+  animation: searchField_stretch 0.3s, searchField_shodowShow 0.3s 0.5s ease-in;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  transition: all 0.3s ease-in;
+  direction: ltr;
+  &.closing {
+    animation: searchField_closing 0.5s;
+  }
+  &::placeholder {
+    color: var(--secondary-color-gray2);
+    opacity: 0.4;
+  }
+  &:focus {
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.AutoComplete__result-wrapper {
+  width: 270px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: var(--card-box-shadow);
+  color: var(--text-color);
+  position: absolute;
+  padding: 0;
+  margin-top: 10px;
+  .AutoComplete__result-list {
+    list-style: none;
+    padding: 0;
+    li {
+      cursor: pointer;
+      padding: 10px 30px;
+      &:hover {
+        background: var(--secondary-color-gray2);
+      }
+    }
+  }
+}
+
+@keyframes searchField_stretch {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes searchField_shodowShow {
+  0% {
+    box-shadow: none;
+  }
+  70% {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+  100% {
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@keyframes searchField_closing {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

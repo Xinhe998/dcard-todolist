@@ -3,7 +3,7 @@
   font-size: var(--xs-font-size);
   border-radius: 10px;
   background: #fafafa;
-  border: 1px solid #d8d8d8;
+  border: 1px solid var(--secondary-color-gray1);
   box-shadow: var(--panebtn-box-shadow);
   margin-top: 10px;
   transition: all 0.5s;
@@ -24,7 +24,7 @@
       box-shadow: var(--panebtn-box-shadow);
     }
     .PaneBtn__label {
-      color: #d8d8d8;
+      color: var(--secondary-color-gray1);
     }
   }
   .PaneBtn__icon {

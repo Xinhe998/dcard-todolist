@@ -1,6 +1,6 @@
 .CardScrollView__item {
   max-width: 100%;
-  border: 1px solid #d8d8d8;
+  border: 1px solid var(--secondary-color-gray1);
   padding: 15px;
   border-radius: var(--card-border-radius);
   margin-top: 15px;
@@ -32,8 +32,8 @@
   }
   .CardScrollView__item__date {
     cursor: pointer;
-    color: #d8d8d8;
-    border: 1px solid #e7e7e7;
+    color: var(--secondary-color-gray1);
+    border: 1px solid var(--secondary-color-gray2);
     border-radius: 50px;
     display: inline-block;
     padding: 1px 10px;
@@ -79,18 +79,18 @@
       background-size: 20px 20px;
     }
     &:checked ~ label.CardScrollView__item__text {
-      color: #d8d8d8;
+      color: var(--secondary-color-gray1);
       width: 80%;
     }
     &:checked ~ label.CardScrollView__item__importance {
-      color: #d8d8d8;
+      color: var(--secondary-color-gray1);
     }
     &:checked ~ .stroke {
       width: 0%;
       position: absolute;
       left: 40px;
       top: 25px;
-      border-top: 1px solid #d8d8d8;
+      border-top: 1px solid var(--secondary-color-gray1);
       animation: stroke_stretch 0.5s 0.3s;
       animation-fill-mode: forwards;
     }
@@ -116,10 +116,10 @@
     left: 30px;
     font-size: var(--task-font-size);
     &::placeholder {
-      color: #d8d8d8;
+      color: var(--secondary-color-gray1);
     }
     &:disabled {
-      color: #d8d8d8;
+      color: var(--secondary-color-gray1);
     }
   }
 }

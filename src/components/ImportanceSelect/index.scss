@@ -17,7 +17,7 @@
     user-select: none;
     transition: all .5s;
     &:not(:last-child) {
-      border-bottom: 1px solid #e7e7e7;
+      border-bottom: 1px solid var(--secondary-color-gray2);
     }
     &.ImportanceSelect__button--checked {
       &::after {
@@ -33,7 +33,7 @@
     &:not(.ImportanceSelect__button--checked) {
       cursor: pointer;
       &:hover {
-        background-color: #e7e7e7;
+        background-color: var(--secondary-color-gray2);
       }
     }
   }

@@ -6,7 +6,6 @@ import React, {
 import './index.scss';
 import reducer from '../reducers/todo';
 import Store from '../reducers/context';
-
 import Header from '../components/Header';
 import DatePickerModal from '../components/DatePickerModal';
 import ImportanceModal from '../components/ImportanceModal';
@@ -27,7 +26,7 @@ const Home = () => {
   };
   return (
     <Store.Provider value={dispatch}>
-      <Header title="TodoList" />
+      <Header title="TodoList" state={state} />
       <div className="AppContent">
         <h1 className="TasksToolBar__title">All Tasks</h1>
         <ListCardView state={state} />
