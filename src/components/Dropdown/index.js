@@ -32,8 +32,9 @@ const Dropdown = ({
       {isOpen ? (
         <div className="Dropdown__tooltip">
           <ul className="Dropdown__tooltip__list">
-            {options.map(option => (
+            {options.map((option, index) => (
               <li
+                key={index}
                 onClick={() => {
                   setSelectedOption(option);
                   swichOptionHandler(false);

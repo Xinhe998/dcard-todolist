@@ -34,6 +34,7 @@ const Store = React.createContext({
     },
   ],
   filter: 'All',
+  sortBy: 'Status',
 });
 
 export default Store;

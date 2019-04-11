@@ -15,6 +15,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_TODO_IS_COMPLETE':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, {
@@ -27,6 +28,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_TODO_NAME':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, { text: action.payload.text });
@@ -37,6 +39,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_TODO_NOTE':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, { note: action.payload.note });
@@ -65,6 +68,7 @@ const reducer = (state, action) => {
 
   case 'ADD_SUB_TASK':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           item.subtask = [...item.subtask, action.payload.subtask];
@@ -76,6 +80,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_SUB_TASK':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id !== item.id) {
           return item;
@@ -94,6 +99,7 @@ const reducer = (state, action) => {
 
   case 'SHOWING_DETAIL':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           item.showingDetail = true;
@@ -106,6 +112,7 @@ const reducer = (state, action) => {
 
   case 'FIRST_TASK_SHOWING_DETAIL':
     return {
+      ...state,
       todos: state.todos.map((item, index) => {
         if (index === 0) {
           item.showingDetail = true;
@@ -118,6 +125,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_IMPORTANCE':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, { importance: action.payload.importance });
@@ -128,6 +136,7 @@ const reducer = (state, action) => {
 
   case 'UPDATE_DUE_DATE':
     return {
+      ...state,
       todos: state.todos.map((item) => {
         if (action.payload.id === item.id) {
           return Object.assign({}, item, { dueDate: action.payload.dueDate });
@@ -155,6 +164,28 @@ const reducer = (state, action) => {
       };
     default:
       return state;
+    }
+
+  case 'UPDATE_SORT':
+    switch (action.payload) {
+    case 'Status':
+      return {
+        ...state,
+        sortBy: 'Status',
+      };
+    case 'Time':
+      return {
+        ...state,
+        sortBy: 'Time',
+      };
+    case 'Importance':
+      return {
+        ...state,
+        sortBy: 'Importance',
+      };
+    default:
+      return state;
+    }
   }
-}};
+};
 export default reducer;
