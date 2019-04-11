@@ -22,7 +22,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
   return current ? (
     <Modal
       isOpen={isOpen}
-      title="Pick Date"
+      title="Expiration date"
       onClose={() => {
         setSelectedDate(current.dueDate ? current.dueDate : new Date());
         switchHandler(false);

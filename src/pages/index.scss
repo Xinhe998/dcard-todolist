@@ -39,9 +39,16 @@ body {
   height: 40px;
   margin: 10px 0;
 }
+.Toolbox {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 50px;
+  width: 220px;
+}
 .CardScrollView {
   position: relative;
   height: calc(100vh - var(--header-height) - 120px);
+  min-width: 300px;
   width: 450px;
   background: var(--card-bg-color);
   box-shadow: var(--card-box-shadow);
