@@ -33,6 +33,7 @@ const Store = React.createContext({
       importance: '',
     },
   ],
+  filter: 'All',
 });
 
 export default Store;

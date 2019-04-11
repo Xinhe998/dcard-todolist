@@ -136,8 +136,25 @@ const reducer = (state, action) => {
       }),
     };
 
-  default:
-    return state;
+  case 'UPDATE_FILTER':
+    switch (action.payload) {
+    case 'All':
+      return {
+        ...state,
+        filter: 'All',
+      };
+    case 'Active':
+      return {
+        ...state,
+        filter: 'Active',
+      };
+    case 'Completed':
+      return {
+        ...state,
+        filter: 'Completed',
+      };
+    default:
+      return state;
   }
-};
+}};
 export default reducer;

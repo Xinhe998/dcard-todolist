@@ -46,3 +46,5 @@ export const setFirstTaskShowingDetail = () => ({
 });
 
 export const updateImportance = payload => ({ type: 'UPDATE_IMPORTANCE', payload });
+
+export const updateFilter = payload => ({ type: 'UPDATE_FILTER', payload });

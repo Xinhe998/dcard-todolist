@@ -23,6 +23,7 @@
 }
 .Modal__content {
   height: calc(100% - 108px);
+  transition: all .5s;
 }
 .Modal__title {
   height: 54px;

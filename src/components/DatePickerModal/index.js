@@ -9,7 +9,7 @@ const DatePickerModal = ({ isOpen, switchHandler, currentTask }) => {
   const dispatch = useContext(Store);
   const current = currentTask();
   const [selectedDate, setSelectedDate] = useState(
-    current.dueDate ? current.dueDate : new Date(),
+    current && current.dueDate ? current.dueDate : new Date(),
   );
   const onSave = (day) => {
     dispatch(

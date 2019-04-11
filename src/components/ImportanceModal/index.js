@@ -26,7 +26,7 @@ const ImportanceModal = ({ isOpen, switchHandler, currentTask }) => {
     >
       <ImportanceSelect
         options={importanceOptions}
-        active={current.importance}
+        active={current ? current.importance : ''}
         onSelect={handleSelect}
       />
     </Modal>

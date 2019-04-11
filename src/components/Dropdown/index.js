@@ -6,7 +6,14 @@ import useClickOutside from '../../hooks/useClickOutside';
 
 import './index.scss';
 
-const Dropdown = ({ icon, text, options, swichOptionHandler, isOpen }) => {
+const Dropdown = ({
+  icon,
+  text,
+  options,
+  swichOptionHandler,
+  isOpen,
+  handleClickDispatch,
+}) => {
   const dispatch = useContext(Store);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef();
@@ -30,6 +37,7 @@ const Dropdown = ({ icon, text, options, swichOptionHandler, isOpen }) => {
                 onClick={() => {
                   setSelectedOption(option);
                   swichOptionHandler(false);
+                  handleClickDispatch(option);
                 }}
                 className={selectedOption === option ? 'active' : ''}
               >
@@ -47,15 +55,17 @@ Dropdown.propTypes = {
   icon: PropTypes.string,
   text: PropTypes.string,
   options: PropTypes.array,
-  // selectedOption: PropTypes.string,
   swichOptionHandler: PropTypes.func,
+  isOpen: PropTypes.bool,
+  handleClickDispatch: PropTypes.func,
 };
 
 Dropdown.defaultProps = {
   icon: '',
   text: '',
   options: [],
-  // selectedOption: '',
   swichOptionHandler: null,
+  isOpen: false,
+  handleClickDispatch: null,
 };
 export default Dropdown;

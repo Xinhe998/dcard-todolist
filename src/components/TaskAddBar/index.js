@@ -12,7 +12,7 @@ const TaskAddBar = () => {
       dispatch(
         action.addTodoItem({
           id: newId,
-          text: newTask,
+          text: newTask.trimRight(),
           isComplete: false,
           showingDetail: true,
           note: '',
