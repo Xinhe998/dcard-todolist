@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import Modal from '../Modal';
-import ImportanceSelect from '../ImportanceSelect';
+import ImportanceSelect from './ImportanceSelect';
 
 const ImportanceModal = ({ isOpen, switchHandler, currentTask }) => {
   const importanceOptions = ['High', 'Medium', 'Low'];

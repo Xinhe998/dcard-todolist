@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
-import TitleTextarea from '../TitleTextarea';
+import TitleTextarea from './TitleTextarea';
 import PaneButton from '../PaneButton';
-import Notes from '../Notes';
+import Notes from './Notes';
 import SubTasks from '../SubTasks';
 
 import calendarImg from '../../assets/calendar.png';

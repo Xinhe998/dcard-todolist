@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Store from '../../reducers/context';
-import * as action from '../../actions/todoActions';
-import useAutoSize from '../../hooks/useAutoSize';
+import Store from '../../../reducers/context';
+import * as action from '../../../actions/todoActions';
+import useAutoSize from '../../../hooks/useAutoSize';
 
 const TitleTextarea = ({ item }) => {
   const dispatch = useContext(Store);

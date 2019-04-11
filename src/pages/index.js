@@ -11,12 +11,16 @@ import DatePickerModal from '../components/DatePickerModal';
 import ImportanceModal from '../components/ImportanceModal';
 import ListCardView from '../components/ListCardView';
 import DetailCardView from '../components/DetailCardView';
+import Dropdown from '../components/Dropdown';
+
+import sortIcon from '../assets/sort.png';
 
 const Home = () => {
   const globalStore = useContext(Store);
   const [state, dispatch] = useReducer(reducer, globalStore);
   const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
   const [isImportanceModalOpen, setisImportanceModalOpen] = useState(false);
+  const sortOptions = ['Time', 'Importance', 'Status'];
   const findCurrentTask = () => {
     let currentTask;
     state.todos.map((task) => {
@@ -29,6 +33,7 @@ const Home = () => {
       <Header title="TodoList" state={state} />
       <div className="AppContent">
         <h1 className="TasksToolBar__title">All Tasks</h1>
+        <Dropdown text="Sort by:  " icon={sortIcon} options={sortOptions} />
         <ListCardView state={state} />
         <DetailCardView
           state={state}

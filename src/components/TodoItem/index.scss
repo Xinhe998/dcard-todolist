@@ -23,7 +23,7 @@
     word-break: break-all;
     padding: 0 0 0 4px;
     display: block;
-    line-height: 1;
+    line-height: 1.2;
     transition: all 0.5s;
     white-space: nowrap;
     overflow: hidden;
@@ -45,7 +45,7 @@
     cursor: pointer;
     color: var(--dcard-blue);
     padding: 0 0 0 30px;
-    line-height: 1;
+    line-height: 1.2;
   }
   input[type='checkbox'] {
     display: inline-block;
