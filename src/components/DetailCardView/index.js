@@ -10,7 +10,7 @@ import SubTasks from '../SubTasks';
 import calendarImg from '../../assets/calendar.png';
 import levelImg from '../../assets/level.png';
 
-const ListCardView = ({
+const DetailCardView = ({
   state,
   setIsDatePickerModalOpen,
   setisImportanceModalOpen,
@@ -55,15 +55,15 @@ const ListCardView = ({
   );
 };
 
-ListCardView.propTypes = {
+DetailCardView.propTypes = {
   state: PropTypes.object,
   setisImportanceModalOpen: PropTypes.func,
   setIsDatePickerModalOpen: PropTypes.func,
 };
 
-ListCardView.defaultProps = {
+DetailCardView.defaultProps = {
   state: null,
   setisImportanceModalOpen: null,
   setIsDatePickerModalOpen: null,
 };
-export default ListCardView;
+export default DetailCardView;

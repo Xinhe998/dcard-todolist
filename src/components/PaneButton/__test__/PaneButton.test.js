@@ -1,4 +1,5 @@
 /* eslint-disable func-names */
+import 'babel-polyfill';
 import React from 'react';
 import { shallow, configure, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -44,8 +45,8 @@ describe('<PaneButton />', function () {
       this.subject = this.makeSubject();
     });
 
-    it('should be same as snapshot', () => {
-      const wrapper = render(testComp);
+    it('should be same as snapshot', async () => {
+      const wrapper = render(await testComp);
       expect(wrapper).toMatchSnapshot();
     });
     // 測試找到一個<button>

@@ -22,6 +22,7 @@
   .CardScrollView__item__main-content {
     width: 100%;
     &.CardScrollView__item__main-content--has-progressbar {
+      display: flex;
       margin-top: 13.5px;
       input[type='checkbox'] {
         top: 12px;
