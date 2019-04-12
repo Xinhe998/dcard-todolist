@@ -28,7 +28,6 @@ const Home = () => {
   const sortByStatus = (sortArray) => {
     switch (sortBy) {
     case 'Status':
-      console.log('!!');
       sortArray = sortArray.sort((item1, item2) => (item1.isComplete === item2.isComplete ? 0 : item1.isComplete ? 1 : -1),);
       return sortArray;
     case 'Time':
@@ -110,7 +109,7 @@ const Home = () => {
           />
         </div>
         <ListCardView state={stateAfterFilter} />
-        {stateAfterFilter.todos ? (
+        {stateAfterFilter.todos.length ? (
           <DetailCardView
             state={stateAfterFilter}
             setIsDatePickerModalOpen={setIsDatePickerModalOpen}

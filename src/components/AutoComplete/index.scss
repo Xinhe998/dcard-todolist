@@ -79,7 +79,10 @@
   color: var(--text-color);
   position: absolute;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 0px;
+  opacity: 0;
+  animation: FadeDown .3s;
+  animation-fill-mode: forwards;
   .AutoComplete__result-list {
     list-style: none;
     padding: 0;
