@@ -25,64 +25,66 @@ const Home = () => {
   const sortOptions = ['Status', 'Time', 'Importance'];
   const [isFilterToolOpen, setIsFilterToolOpen] = useState(false);
   const filterOptions = ['All', 'Active', 'Completed'];
-  const sortByStatus = (sortArray) => {
+  const sortByStatus = sortArray => {
     switch (sortBy) {
-    case 'Status':
-      sortArray = sortArray.sort((item1, item2) => (item1.isComplete === item2.isComplete ? 0 : item1.isComplete ? 1 : -1),);
-      return sortArray;
-    case 'Time':
-      sortArray = sortArray.sort(
-        (item1, item2) => new Date(item1.dueDate) - new Date(item2.dueDate),
-      );
-      return sortArray;
-    case 'Importance':
-      var priorityArray = ['High', 'Medium', 'Low', ''];
-      sortArray = sortArray.sort(
-        (item1, item2) => {
+      case 'Status':
+        sortArray = sortArray.sort((item1, item2) =>
+          item1.isComplete === item2.isComplete ? 0 : item1.isComplete ? 1 : -1,
+        );
+        return sortArray;
+      case 'Time':
+        sortArray = sortArray.sort(
+          (item1, item2) => new Date(item1.dueDate) - new Date(item2.dueDate),
+        );
+        return sortArray;
+      case 'Importance':
+        var priorityArray = ['High', 'Medium', 'Low', ''];
+        sortArray = sortArray.sort((item1, item2) => {
           item1 = priorityArray.indexOf(item1.importance);
           item2 = priorityArray.indexOf(item2.importance);
           return item1 - item2;
-        },
-      );
-      return sortArray;
-    default:
-      sortArray = sortArray.sort((item1, item2) => (item1.isComplete === item2.isComplete ? 0 : item1.isComplete ? 1 : -1),);
-      return sortArray;
+        });
+        return sortArray;
+      default:
+        sortArray = sortArray.sort((item1, item2) =>
+          item1.isComplete === item2.isComplete ? 0 : item1.isComplete ? 1 : -1,
+        );
+        return sortArray;
     }
   };
   switch (filter) {
-  case 'All':
-    stateAfterFilter = state;
-    break;
-  case 'Active':
-    stateAfterFilter = Object.assign({}, state, {
-      todos: state.todos.filter(t => !t.isComplete),
-    });
-    break;
-  case 'Completed':
-    stateAfterFilter = Object.assign({}, state, {
-      todos: state.todos.filter(t => t.isComplete),
-    });
-    break;
-  default:
-    stateAfterFilter = state;
-    break;
+    case 'All':
+      stateAfterFilter = state;
+      break;
+    case 'Active':
+      stateAfterFilter = Object.assign({}, state, {
+        todos: state.todos.filter(t => !t.isComplete),
+      });
+      break;
+    case 'Completed':
+      stateAfterFilter = Object.assign({}, state, {
+        todos: state.todos.filter(t => t.isComplete),
+      });
+      break;
+    default:
+      stateAfterFilter = state;
+      break;
   }
   stateAfterFilter.todos = sortByStatus(stateAfterFilter.todos);
 
   const findCurrentTask = () => {
     let currentTask;
-    state.todos.map((task) => {
+    state.todos.map(task => {
       if (task.showingDetail) {
         currentTask = task;
       }
     });
     return currentTask;
   };
-  const handleFilter = (status) => {
+  const handleFilter = status => {
     dispatch(action.updateFilter(status));
   };
-  const handleSort = (sorting) => {
+  const handleSort = sorting => {
     dispatch(action.updateSortBy(sorting));
   };
   return (
@@ -90,32 +92,34 @@ const Home = () => {
       <Header title="TodoList" state={stateAfterFilter} />
       <div className="AppContent">
         <h1 className="TasksToolBar__title">All Tasks</h1>
-        <div className="Toolbox">
-          <Dropdown
-            text="Sort by:  "
-            icon={sortIcon}
-            options={sortOptions}
-            isOpen={isSortToolOpen}
-            swichOptionHandler={setIsSortToolOpen}
-            handleClickDispatch={handleSort}
-          />
-          <Dropdown
-            text="Filter:  "
-            icon={filterIcon}
-            options={filterOptions}
-            isOpen={isFilterToolOpen}
-            swichOptionHandler={setIsFilterToolOpen}
-            handleClickDispatch={handleFilter}
-          />
+        <div className="MainContent">
+          <div className="Toolbox">
+            <Dropdown
+              text="Sort by:  "
+              icon={sortIcon}
+              options={sortOptions}
+              isOpen={isSortToolOpen}
+              swichOptionHandler={setIsSortToolOpen}
+              handleClickDispatch={handleSort}
+            />
+            <Dropdown
+              text="Filter:  "
+              icon={filterIcon}
+              options={filterOptions}
+              isOpen={isFilterToolOpen}
+              swichOptionHandler={setIsFilterToolOpen}
+              handleClickDispatch={handleFilter}
+            />
+          </div>
+          <ListCardView state={stateAfterFilter} />
+          {stateAfterFilter.todos.length ? (
+            <DetailCardView
+              state={stateAfterFilter}
+              setIsDatePickerModalOpen={setIsDatePickerModalOpen}
+              setisImportanceModalOpen={setisImportanceModalOpen}
+            />
+          ) : null}
         </div>
-        <ListCardView state={stateAfterFilter} />
-        {stateAfterFilter.todos.length ? (
-          <DetailCardView
-            state={stateAfterFilter}
-            setIsDatePickerModalOpen={setIsDatePickerModalOpen}
-            setisImportanceModalOpen={setisImportanceModalOpen}
-          />
-        ) : null}
       </div>
       <DatePickerModal
         isOpen={isDatePickerModalOpen}
