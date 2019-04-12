@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
+$pc-media: 960px;
+$pad-media: 760px;
+$phone-media: 480px;
+
 .icon {
   font-family: 'Material Icons', serif;
   font-style: normal;
@@ -91,6 +95,10 @@
       line-height: 1.8;
       width: 25px;
       height: 25px;
+      @media screen and (max-width: $pad-media) {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
   .disabled {

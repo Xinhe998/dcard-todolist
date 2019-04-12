@@ -35,6 +35,7 @@ const Store = React.createContext({
   ],
   filter: 'All',
   sortBy: 'Status',
+  detailCardViewShowingGlow: false,
 });
 
 export default Store;

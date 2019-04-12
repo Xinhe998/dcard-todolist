@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
@@ -10,10 +10,22 @@ import SubTasks from '../SubTasks';
 import calendarImg from '../../assets/calendar.png';
 import levelImg from '../../assets/level.png';
 
-const ListCardView = ({ state, setIsDatePickerModalOpen, setisImportanceModalOpen }) => {
+const ListCardView = ({
+  state,
+  setIsDatePickerModalOpen,
+  setisImportanceModalOpen,
+}) => {
   const dispatch = useContext(Store);
+  const detailCard = useRef();
   return (
-    <div className="CardScrollView CardScrollView--animatedIn2">
+    <div
+      className={
+        state.detailCardViewShowingGlow
+          ? 'CardScrollView CardScrollView--animatedIn2 CardScrollView--glowing'
+          : 'CardScrollView CardScrollView--animatedIn2'
+      }
+      ref={detailCard}
+    >
       <div className="CardScrollView__detail">
         {state.todos.map((item) => {
           if (item.showingDetail) {
@@ -28,7 +40,7 @@ const ListCardView = ({ state, setIsDatePickerModalOpen, setisImportanceModalOpe
                 />
                 <PaneButton
                   icon={levelImg}
-                  text="Importance"
+                  text="Priority"
                   handleClick={() => setisImportanceModalOpen(true)}
                   disabled={item.isComplete}
                 />

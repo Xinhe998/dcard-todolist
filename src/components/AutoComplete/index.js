@@ -8,14 +8,14 @@ import noResult from '../../assets/no_result.png';
 
 import './index.scss';
 
-const AutoComplete = ({
-  isOpen, switchHandler, placeHolder, data,
-}) => {
+const AutoComplete = ({ isOpen, switchHandler, placeHolder, data }) => {
   const dispatch = useContext(Store);
   const searchRef = useRef();
   const autocompleteRef = useRef();
   const [searchText, setSearchText] = useState('');
-  const searchResult = data.filter(d => d.text.includes(searchText) && searchText !== '');
+  const searchResult = data.filter(
+    d => d.text.includes(searchText) && searchText !== '',
+  );
   useClickOutside(isOpen, autocompleteRef, () => {
     setSearchText('');
     searchRef.current.classList.add('closing');
@@ -72,6 +72,10 @@ const AutoComplete = ({
                     dispatch(action.setTaskShowingDetail({ id: item.id }));
                     switchHandler(false);
                     setSearchText('');
+                    dispatch(action.setDetailCardViewShowGlow(true));
+                    setTimeout(() => {
+                      dispatch(action.setDetailCardViewShowGlow(false));
+                    }, 1000);
                   }}
                 >
                   {item.text}
@@ -79,8 +83,14 @@ const AutoComplete = ({
               ))
             ) : (
               <div className="AutoComplete__result__no-result-wrapper">
-                <img className="AutoComplete__result__no-result-img" src={noResult} alt="no search result." />
-                <p className="AutoComplete__result__no-result-info">No Result</p>
+                <img
+                  className="AutoComplete__result__no-result-img"
+                  src={noResult}
+                  alt="no search result."
+                />
+                <p className="AutoComplete__result__no-result-info">
+                  No Result
+                </p>
               </div>
             )}
           </ul>

@@ -40,13 +40,19 @@ const ListCardView = ({ state }) => {
                   isComplete: !item.isComplete,
                 }),
               );
+              
             }}
             del={() => {
               dispatch(action.deleteTodoItem(item));
               dispatch(action.setFirstTaskShowingDetail());
             }}
-            handleClick={() => dispatch(action.setTaskShowingDetail({ id: item.id }))
-            }
+            handleClick={() => {
+              dispatch(action.setTaskShowingDetail({ id: item.id }));
+              dispatch(action.setDetailCardViewShowGlow(true));
+              setTimeout(() => {
+                dispatch(action.setDetailCardViewShowGlow(false));
+              }, 1000);
+            }}
           />
         ))}
       </div>

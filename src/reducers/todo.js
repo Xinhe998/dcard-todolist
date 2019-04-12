@@ -186,6 +186,11 @@ const reducer = (state, action) => {
     default:
       return state;
     }
+  case 'DETAIL_CARD_SHOW_GLOW':
+    return {
+      ...state,
+      detailCardViewShowingGlow: action.payload
+    }
   }
 };
 export default reducer;
