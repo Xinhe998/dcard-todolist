@@ -1,0 +1,16 @@
+.Progress__wrapper {
+  display: flex;
+  position: absolute;
+  top: 10px;
+}
+.Progress__bar {
+  width: 25px;
+  height: 4px;
+  display: inline-block;
+  margin-right: 3px;
+  border-radius: 1.5px;
+  background-color: #add8eb;
+  &.Progress__bar--active {
+    background-color: var(--dcard-blue);
+  }
+}

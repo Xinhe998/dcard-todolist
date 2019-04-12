@@ -19,7 +19,7 @@ const ImportanceModal = ({ isOpen, switchHandler, currentTask }) => {
   return (
     <Modal
       isOpen={isOpen}
-      title="Importance"
+      title="Priority"
       onClose={() => switchHandler(false)}
       shouldCloseOnEsc
       showControlBtn={false}

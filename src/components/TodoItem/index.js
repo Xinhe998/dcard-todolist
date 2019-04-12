@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Progress from './Progress';
 
 import './index.scss';
 
@@ -18,6 +19,7 @@ const TodoItem = ({
   EditInputPlaceholder,
   handleClick,
   inputRef,
+  hasProgress,
 }) => (
   <div
     className={
@@ -27,46 +29,48 @@ const TodoItem = ({
     }
     onClick={handleClick}
   >
-    <input
-      type="checkbox"
-      checked={isComplete}
-      onClick={onClickCheckbox}
-      onChange={() => {}}
-      value={isComplete}
-    />
-    {allowEdit ? (
+    {hasProgress ? <Progress total={3} current={importance} /> : null}
+    <div className={hasProgress && importance ? 'CardScrollView__item__main-content CardScrollView__item__main-content--has-progressbar' : 'CardScrollView__item__main-content'}>
       <input
-        type="text"
-        className="editInput"
-        disabled={isComplete}
-        onChange={handleEdit}
-        value={text}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        placeholder={EditInputPlaceholder}
-        ref={inputRef}
+        type="checkbox"
+        checked={isComplete}
+        onClick={onClickCheckbox}
+        onChange={() => {}}
+        value={isComplete}
       />
-    ) : (
-      <>
-        <label className="CardScrollView__item__importance">{importance}</label>
-        <label className="CardScrollView__item__text">{text}</label>
-      </>
-    )}
-    {date && !isComplete ? (
-      <label className="CardScrollView__item__date">{date.toString()}</label>
-    ) : null}
-    {isComplete ? (
-      <>
-        <div className="stroke" />
-        <div
-          className="delBtn"
-          onClick={(e) => {
-            e.stopPropagation();
-            del();
-          }}
+      {allowEdit ? (
+        <input
+          type="text"
+          className="editInput"
+          disabled={isComplete}
+          onChange={handleEdit}
+          value={text}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={EditInputPlaceholder}
+          ref={inputRef}
         />
-      </>
-    ) : null}
+      ) : (
+        <>
+          <label className="CardScrollView__item__text">{text}</label>
+        </>
+      )}
+      {date && !isComplete ? (
+        <label className="CardScrollView__item__date">{date.toString()}</label>
+      ) : null}
+      {isComplete ? (
+        <>
+          <div className="stroke" />
+          <div
+            className="delBtn"
+            onClick={e => {
+              e.stopPropagation();
+              del();
+            }}
+          />
+        </>
+      ) : null}
+    </div>
   </div>
 );
 
@@ -83,11 +87,12 @@ TodoItem.propTypes = {
   EditInputPlaceholder: PropTypes.string,
   handleClick: PropTypes.func,
   date: PropTypes.string,
-  importance: PropTypes.string,
+  importance: PropTypes.number,
   inputRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
+  hasProgress: PropTypes.bool,
 };
 TodoItem.defaultProps = {
   text: '',
@@ -100,9 +105,10 @@ TodoItem.defaultProps = {
   EditInputPlaceholder: '',
   handleClick: null,
   date: '',
-  importance: '',
+  importance: 0,
   inputRef: null,
   handleFocus: null,
   handleBlur: null,
+  hasProgress: false,
 };
 export default TodoItem;

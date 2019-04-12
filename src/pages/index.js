@@ -22,7 +22,7 @@ const Home = () => {
   const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
   const [isImportanceModalOpen, setisImportanceModalOpen] = useState(false);
   const [isSortToolOpen, setIsSortToolOpen] = useState(false);
-  const sortOptions = ['Status', 'Time', 'Importance'];
+  const sortOptions = ['Status', 'Time', 'Priority'];
   const [isFilterToolOpen, setIsFilterToolOpen] = useState(false);
   const filterOptions = ['All', 'Active', 'Completed'];
   const sortByStatus = sortArray => {

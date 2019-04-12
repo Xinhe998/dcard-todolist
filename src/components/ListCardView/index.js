@@ -12,13 +12,13 @@ const ListCardView = ({ state }) => {
   const convertImportance = (importance) => {
     switch (importance) {
     case 'High':
-      return '!!!';
+      return 3;
     case 'Medium':
-      return '!!';
+      return 2;
     case 'Low':
-      return '!';
+      return 1;
     default:
-      break;
+      return 0;
     }
   };
   return (
@@ -32,6 +32,7 @@ const ListCardView = ({ state }) => {
             showGlow={item.showingDetail}
             date={item.dueDate ? format(item.dueDate, dateFormat) : ''}
             importance={convertImportance(item.importance)}
+            hasProgress
             onClickCheckbox={() => {
               dispatch(
                 action.updateTodoIsComplete({
