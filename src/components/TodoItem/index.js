@@ -32,16 +32,17 @@ const TodoItem = ({
       checked={isComplete}
       onClick={onClickCheckbox}
       onChange={() => {}}
+      value={isComplete}
     />
     {allowEdit ? (
       <input
         type="text"
         className="editInput"
         disabled={isComplete}
+        onChange={handleEdit}
         value={text}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onChange={handleEdit}
         placeholder={EditInputPlaceholder}
         ref={inputRef}
       />

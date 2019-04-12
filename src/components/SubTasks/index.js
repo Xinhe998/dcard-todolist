@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
-import uuid from '../../utils';
+import uuid from '../../utils/uuid';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 import TodoItem from '../TodoItem';
@@ -87,7 +87,6 @@ const SubTasks = ({ item }) => {
           );
           focusWhenAdd();
         }}
-        
       />
     </div>
   );

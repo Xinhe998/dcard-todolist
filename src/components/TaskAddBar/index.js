@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import uuid from '../../utils';
+import uuid from '../../utils/uuid';
 import Store from '../../reducers/context';
 import * as action from '../../actions/todoActions';
 
