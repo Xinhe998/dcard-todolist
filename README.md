@@ -3,7 +3,7 @@
 > Todo List Made By React Hooks
 
 ---
-<img src="./screenshot.png" width="600" />
+<img src="./screenshot.png" />
 
 - **No** class components
 - Uses `Context` to share a **global state**
