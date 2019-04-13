@@ -1,7 +1,5 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import Store from '../../reducers/context';
-import * as action from '../../actions/todoActions';
 import TitleTextarea from './TitleTextarea';
 import PaneButton from '../PaneButton';
 import Notes from './Notes';
@@ -15,7 +13,6 @@ const DetailCardView = ({
   setIsDatePickerModalOpen,
   setisImportanceModalOpen,
 }) => {
-  const dispatch = useContext(Store);
   const detailCard = useRef();
   return (
     <div
@@ -30,23 +27,25 @@ const DetailCardView = ({
         {state.todos.map((item) => {
           if (item.showingDetail) {
             return (
-              <>
-                <TitleTextarea item={item} />
+              <div key={item.id}>
+                <TitleTextarea key={`${item.id}_title`} item={item} />
                 <PaneButton
+                  key={`${item.id}_btn1`}
                   icon={calendarImg}
                   text="Expiration date"
                   handleClick={() => setIsDatePickerModalOpen(true)}
                   disabled={item.isComplete}
                 />
                 <PaneButton
+                  key={`${item.id}_btn2`}
                   icon={levelImg}
                   text="Priority"
                   handleClick={() => setisImportanceModalOpen(true)}
                   disabled={item.isComplete}
                 />
-                <Notes item={item} />
-                <SubTasks item={item} />
-              </>
+                <Notes key={`${item.id}_note`} item={item} />
+                <SubTasks key={`${item.id}_subtasks`} item={item} />
+              </div>
             );
           }
         })}

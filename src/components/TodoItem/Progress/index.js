@@ -6,7 +6,7 @@ import './index.scss';
 const Progress = ({ total, current }) => {
   const progressbar = [];
   for (let i = 0; i < total; i += 1) {
-    progressbar.push(<div className={i <= current - 1 ? 'Progress__bar Progress__bar--active' : 'Progress__bar'} />);
+    progressbar.push(<div key={i} className={i <= current - 1 ? 'Progress__bar Progress__bar--active' : 'Progress__bar'} />);
   }
   return (
     <div className="Progress__wrapper">
