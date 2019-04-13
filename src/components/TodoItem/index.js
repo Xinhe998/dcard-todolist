@@ -36,7 +36,7 @@ const TodoItem = ({
         checked={isComplete}
         onClick={onClickCheckbox}
         onChange={() => {}}
-        value={isComplete}
+        defaultValue={isComplete}
       />
       {allowEdit ? (
         <input
@@ -44,7 +44,7 @@ const TodoItem = ({
           className="editInput"
           disabled={isComplete}
           onChange={handleEdit}
-          value={text}
+          defaultValue={text}
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={EditInputPlaceholder}

@@ -109,7 +109,7 @@ const DatePicker = ({ defaultDate, onSelect, disabledPastDate }) => {
 };
 
 DatePicker.propTypes = {
-  defaultDate: PropTypes.string,
+  defaultDate: PropTypes.instanceOf(Date),
   onSelect: PropTypes.func,
   disabledPastDate: PropTypes.bool,
 };
