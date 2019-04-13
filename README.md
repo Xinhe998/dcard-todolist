@@ -2,7 +2,6 @@
 > 2019 Dcard Web Development Intern - Take home test <br />
 > Todo List Made By React Hooks
 
----
 <img src="./screenshot.png" />
 
 - **No** class components
@@ -12,7 +11,9 @@
 - Decoupled state logic (Actions)
 - Testable components (Uses Jest + Enzyme for tests)
 - Custom Hooks
+- EsLint extends Airbnb style guide
 - BEM naming with SCSS
+- Babel and Webpack4
 
 ## Getting Started
 1. Start developing.
