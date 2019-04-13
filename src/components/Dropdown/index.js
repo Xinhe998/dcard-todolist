@@ -40,7 +40,7 @@ const Dropdown = ({
                   swichOptionHandler(false);
                   handleClickDispatch(option);
                 }}
-                className={selectedOption === option ? 'active' : ''}
+                className={selectedOption === option ? 'Dropdown__tooltip__list__option active' : 'Dropdown__tooltip__list__option'}
               >
                 {option}
               </li>

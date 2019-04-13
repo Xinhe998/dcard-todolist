@@ -11,8 +11,6 @@ import DetailCardView from '../index';
 configure({ adapter: new Adapter() });
 
 describe('<DetailCardView />', () => {
-  // const dispatch = jest.fn();
-
   describe('when it has complete data', () => {
     let state = {
       todos: [
@@ -40,6 +38,17 @@ describe('<DetailCardView />', () => {
     it('should be same as snapshot', async () => {
       const wrapper = render(await testComp);
       expect(wrapper).toMatchSnapshot();
+    });
+
+    // 測試更新note
+    it('should trigger dispatch when update notes', async () => {
+      await testComp
+        .find('.CardScrollView__detail__note')
+        .children()
+        .find('textarea')
+        .simulate('change', { target: { value: 'test note' } });
+
+      expect(state.todos[0]).toEqual(expect.objectContaining({ note: 'test note' }));
     });
   });
 });

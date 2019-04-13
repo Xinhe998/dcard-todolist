@@ -9,7 +9,7 @@ const Notes = ({ item }) => {
   const taskNoteRef = useRef();
   useAutoSize(taskNoteRef);
   return (
-    <div className="CardScrollView__detail__block">
+    <div className="CardScrollView__detail__block CardScrollView__detail__note">
       <div className="CardScrollView__detail__block__title">Notes</div>
       <textarea
         className="CardScrollView__detail__block__textarea"
