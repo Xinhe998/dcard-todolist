@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     // 將輸出的檔案放到這個資料夾下
-    path: path.join(__dirname, 'public/'),
+    path: path.join(__dirname, 'dist/'),
     // 將所有依賴的模組都合併輸出到這個檔案
     filename: 'index_bundle.js',
     // publicPath: '/',

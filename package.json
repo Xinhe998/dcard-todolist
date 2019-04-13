@@ -5,9 +5,10 @@
   "description": "2019 Dcard Web Development Intern - Take home test",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --devtool eval --progress --colors --content-base build",
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "yarn run test -- --coverage",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
+    "build": "webpack --mode production"
   },
   "author": "Xinhe",
   "license": "ISC",
