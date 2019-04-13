@@ -17,7 +17,7 @@ describe('<SubTasks />', function () {
   beforeEach(() => {
     jest.resetModules();
     this.params = {
-      item: [],
+      item: [{}],
     };
 
     this.makeSubject = () => {

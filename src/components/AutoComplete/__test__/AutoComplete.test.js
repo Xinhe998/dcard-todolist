@@ -1,17 +1,34 @@
 /* eslint-disable func-names */
 import 'babel-polyfill';
 import React from 'react';
-import { shallow, configure, render } from 'enzyme';
+import { configure, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import Store from '../../../reducers/context';
+import reducer from '../../../reducers/todo';
 import AutoComplete from '../index';
-
-import filter from '../../../assets/filter.png';
 
 // 以該解析器提供給 Enzyme 做渲染 Component 的設置
 configure({ adapter: new Adapter() });
 
 describe('<AutoComplete />', function () {
   let testComp;
+  let state = {
+    todos: [
+      {
+        id: 1,
+        text: 'test1',
+        isComplete: false,
+        showingDetail: true,
+        note: '',
+        subtask: [],
+        dueDate: '',
+        importance: 'High',
+      },
+    ],
+  };
+  const dispatch = (action) => {
+    state = reducer(state, action);
+  };
   beforeEach(() => {
     jest.resetModules();
     this.params = {
@@ -22,15 +39,19 @@ describe('<AutoComplete />', function () {
     };
 
     this.makeSubject = () => {
-      const { isOpen, switchHandler, placeHolder, data } = this.params;
+      const {
+        isOpen, switchHandler, placeHolder, data,
+      } = this.params;
 
-      testComp = shallow(
-        <AutoComplete
-          isOpen={isOpen}
-          switchHandler={switchHandler}
-          placeHolder={placeHolder}
-          data={data}
-        />,
+      testComp = mount(
+        <Store.Provider value={(state, dispatch)}>
+          <AutoComplete
+            isOpen={isOpen}
+            switchHandler={switchHandler}
+            placeHolder={placeHolder}
+            data={data}
+          />
+        </Store.Provider>,
       );
       return testComp;
     };
@@ -38,40 +59,25 @@ describe('<AutoComplete />', function () {
   describe('when it has complete data', () => {
     beforeEach(() => {
       this.params.placeHolder = 'Test...';
+      this.params.data = state.todos;
       this.subject = this.makeSubject();
     });
     it('should be same as snapshot', async () => {
       const wrapper = render(await testComp);
       expect(wrapper).toMatchSnapshot();
     });
-    it('should be three options', async () => {
-      expect(
-        testComp.find('.AutoComplete__tooltip__list__option'),
-      ).toHaveLength(3);
+
+    it('test click event', async () => {
+      await testComp.find('.AutoComplete__button').simulate('click');
+      expect(this.params.switchHandler.mock.calls.length).toEqual(1);
     });
-    // 測試icon
-    it('should render icon', () => {
-      expect(testComp.find('img').prop('src')).toEqual(filter);
-    });
-    // 測試text
-    it('should render text', () => {
-      expect(testComp.find('.AutoComplete__button').text()).toEqual(
-        'Test:option1',
-      );
-    });
-    // 測試按下 button 會觸發 swichOptionHandler
-    it('test click event', () => {
-      testComp.find('button').simulate('click');
-      expect(this.params.swichOptionHandler.mock.calls.length).toEqual(1);
-    });
-    // 測試按下選項
-    it('test click event', () => {
-      testComp
-        .find('.AutoComplete__tooltip__list__option')
-        .at(0)
-        .simulate('click');
-      expect(this.params.swichOptionHandler.mock.calls.length).toEqual(1);
-      expect(this.params.handleClickDispatch.mock.calls.length).toEqual(1);
+
+    it('test click event', async () => {
+      await testComp
+        .find('.AutoComplete__form__input')
+        .simulate('focus')
+        .simulate('change', { target: { value: 'test' } });
+      expect(testComp.find('.AutoComplete__result-list').find('li')).toHaveLength(1);
     });
   });
 });

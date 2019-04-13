@@ -1,3 +1,6 @@
+$pc-media: 960px;
+$pad-media: 760px;
+$phone-media: 480px;
 .CardScrollView__item {
   max-width: 100%;
   border: 1px solid var(--secondary-color-gray1);
@@ -130,6 +133,10 @@
     }
     &:disabled {
       color: var(--secondary-color-gray1);
+    }
+    @media screen and (max-width: $pad-media) {
+      width: 85%;
+      text-overflow: ellipsis;
     }
   }
 }
