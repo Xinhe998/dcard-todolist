@@ -11,13 +11,13 @@ import uuid from '../../../utils/uuid';
 // 以該解析器提供給 Enzyme 做渲染 Component 的設置
 configure({ adapter: new Adapter() });
 
-describe('<SubTasks />', function () {
+describe('<SubTasks />', function() {
   let testComp;
   const dispatch = jest.fn();
   beforeEach(() => {
     jest.resetModules();
     this.params = {
-      item: [{}],
+      item: {},
     };
 
     this.makeSubject = () => {
@@ -34,10 +34,7 @@ describe('<SubTasks />', function () {
   describe('when it has complete data', () => {
     beforeEach(async () => {
       // 給兩筆資料
-      this.params.item = [
-        { id: uuid(), text: 'test1', isComplete: false },
-        { id: uuid(), text: 'test2', isComplete: true },
-      ];
+      this.params.item = { id: uuid(), text: 'test1', isComplete: false };
       this.subject = await this.makeSubject();
     });
 
